@@ -1,0 +1,151 @@
+[
+  {
+    "slug": "atypique-voyages",
+    "nom": "Atypique Voyages",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Sri Lanka",
+    "continent_principal": "Asie",
+    "destinations_secondaires": [
+      { "pays": "Maldives", "continent": "Asie" },
+      { "pays": "Inde du Sud", "continent": "Asie" }
+    ],
+    "description": "Réceptif spécialiste du Sri Lanka authentique — trains de montagne, plantations de thé et plages du Sud. Propose aussi des extensions balnéaires aux Maldives et des circuits culturels en Inde du Sud.",
+    "couleur": "#0E7C66",
+    "presences": {
+      "mardi": { "formule": "journee", "presentation": true, "theme": "Le Sri Lanka au-delà des sentiers battus" },
+      "mercredi": { "formule": "journee", "presentation": false, "theme": "" },
+      "jeudi": { "formule": "absent" }
+    }
+  },
+  {
+    "slug": "bretzel-travel",
+    "nom": "BRETZEL Travel GmbH",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Allemagne",
+    "continent_principal": "Europe",
+    "destinations_secondaires": [
+      { "pays": "Autriche", "continent": "Europe" },
+      { "pays": "Suisse", "continent": "Europe" }
+    ],
+    "description": "DMC germanophone couvrant l'Allemagne (routes romantiques, Bavière, Berlin) ainsi que l'Autriche et la Suisse. Marchés de Noël, randonnées alpines et city-breaks culturels.",
+    "couleur": "#B5461E",
+    "presences": {
+      "mardi": { "formule": "biz_biz", "presentation": false, "theme": "" },
+      "mercredi": { "formule": "absent" },
+      "jeudi": { "formule": "journee", "presentation": false, "theme": "" }
+    }
+  },
+  {
+    "slug": "brightside-travel",
+    "nom": "Brightside Travel LTD",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Royaume-Uni",
+    "continent_principal": "Europe",
+    "destinations_secondaires": [
+      { "pays": "Irlande", "continent": "Europe" },
+      { "pays": "Écosse", "continent": "Europe" }
+    ],
+    "description": "Réceptif britannique basé à Londres, expert des îles Britanniques : Angleterre, Écosse des Highlands et Irlande verdoyante. Autotours, châteaux et pubs de charme.",
+    "couleur": "#274690",
+    "presences": {
+      "mardi": { "formule": "petits_dej", "presentation": false, "theme": "" },
+      "mercredi": { "formule": "petits_dej", "presentation": false, "theme": "" },
+      "jeudi": { "formule": "absent" }
+    }
+  },
+  {
+    "slug": "contact-voyages-senegal",
+    "nom": "Contact Voyages Sénégal",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Sénégal",
+    "continent_principal": "Afrique",
+    "destinations_secondaires": [
+      { "pays": "Gambie", "continent": "Afrique" },
+      { "pays": "Cap-Vert", "continent": "Afrique" }
+    ],
+    "description": "Réceptif sénégalais ancré à Dakar : Lac Rose, Saint-Louis et Sine-Saloum. Étend son savoir-faire à la Gambie fluviale et aux îles du Cap-Vert.",
+    "couleur": "#1E7A3D",
+    "presences": {
+      "mardi": { "formule": "petits_dej", "presentation": false, "theme": "" },
+      "mercredi": { "formule": "petits_dej", "presentation": false, "theme": "" },
+      "jeudi": { "formule": "absent" }
+    }
+  },
+  {
+    "slug": "elite-american-voyages",
+    "nom": "Elite American Voyages",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "États-Unis",
+    "continent_principal": "Amériques",
+    "destinations_secondaires": [
+      { "pays": "Canada", "continent": "Amériques" },
+      { "pays": "Mexique", "continent": "Amériques" }
+    ],
+    "description": "Réceptif nord-américain : parcs de l'Ouest américain, road-trips Route 66 et villes mythiques. Propose aussi l'Ouest canadien et les plages du Mexique.",
+    "couleur": "#8A2846",
+    "presences": {
+      "mardi": { "formule": "petits_dej", "presentation": false, "theme": "" },
+      "mercredi": { "formule": "petits_dej", "presentation": false, "theme": "" },
+      "jeudi": { "formule": "absent" }
+    }
+  },
+  {
+    "slug": "alkemia",
+    "nom": "Alkémia",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Islande",
+    "continent_principal": "Europe",
+    "destinations_secondaires": [
+      { "pays": "Îles Féroé", "continent": "Europe" },
+      { "pays": "Groenland", "continent": "Amériques" }
+    ],
+    "description": "Spécialiste des terres de feu et de glace : Islande volcanique, aurores boréales, Îles Féroé et Groenland. Petits groupes et logements de caractère.",
+    "couleur": "#3A6EA5",
+    "groupe": "Table Mathilde Quéva",
+    "representant": "Mathilde Quéva",
+    "presences": {
+      "mardi": { "formule": "petits_dej", "presentation": false, "theme": "" },
+      "mercredi": { "formule": "petits_dej", "presentation": false, "theme": "" },
+      "jeudi": { "formule": "petits_dej", "presentation": false, "theme": "" }
+    }
+  },
+  {
+    "slug": "tamazirt",
+    "nom": "Tamazirt",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Maroc",
+    "continent_principal": "Afrique",
+    "destinations_secondaires": [
+      { "pays": "Mauritanie", "continent": "Afrique" }
+    ],
+    "description": "Réceptif marocain du grand Sud : dunes de Merzouga, médinas impériales et vallées de l'Atlas. Ouvre aussi ses pistes vers les déserts de Mauritanie.",
+    "couleur": "#C08421",
+    "groupe": "Table Mathilde Quéva",
+    "representant": "Mathilde Quéva",
+    "presences": {
+      "mardi": { "formule": "petits_dej", "presentation": false, "theme": "" },
+      "mercredi": { "formule": "petits_dej", "presentation": false, "theme": "" },
+      "jeudi": { "formule": "petits_dej", "presentation": false, "theme": "" }
+    }
+  },
+  {
+    "slug": "serengeti",
+    "nom": "Serengeti",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Tanzanie",
+    "continent_principal": "Afrique",
+    "destinations_secondaires": [
+      { "pays": "Kenya", "continent": "Afrique" },
+      { "pays": "Zanzibar", "continent": "Afrique" }
+    ],
+    "description": "Réceptif safari en Afrique de l'Est : grande migration du Serengeti, cratère du Ngorongoro, réserves du Kenya et plages de Zanzibar.",
+    "couleur": "#9C5518",
+    "groupe": "Table Mathilde Quéva",
+    "representant": "Mathilde Quéva",
+    "presences": {
+      "mardi": { "formule": "petits_dej", "presentation": false, "theme": "" },
+      "mercredi": { "formule": "petits_dej", "presentation": false, "theme": "" },
+      "jeudi": { "formule": "petits_dej", "presentation": false, "theme": "" }
+    }
+  }
+]
