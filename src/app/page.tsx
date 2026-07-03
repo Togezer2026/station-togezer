@@ -30,8 +30,8 @@ export default function Home() {
           Gratuit pour les agents de voyage
         </p>
 
-        <div className="mt-7 flex justify-center">
-          <Wordmark className="text-7xl sm:text-8xl" />
+        <div className="mt-8 flex justify-center">
+          <Wordmark className="h-auto w-[340px] max-w-full sm:w-[440px]" />
         </div>
 
         <p className="mx-auto mt-9 max-w-lg font-corps text-lg leading-relaxed text-encreDoux">
