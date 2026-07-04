@@ -161,6 +161,10 @@ export default function Home() {
 
       <footer className="border-t border-ligne py-9 text-center font-corps text-sm text-encreDoux">
         La Station TogeZer — hello@togezer.travel
+        <span className="mx-2 text-ligne">·</span>
+        <Link href="/connexion" className="underline underline-offset-2 hover:text-encre">
+          Se connecter
+        </Link>
       </footer>
     </main>
   );
