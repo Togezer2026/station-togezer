@@ -1,17 +1,20 @@
 import { requireAdmin } from "@/lib/admin";
+import RdvTable, { type Rdv } from "./RdvTable";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminRdv() {
-  await requireAdmin();
+  const { supabase } = await requireAdmin();
+  const { data } = await supabase.rpc("admin_rendez_vous");
+  const rows = (data ?? []) as Rdv[];
+
   return (
     <div>
       <h1 className="font-titre text-3xl font-600 text-encre">Rendez-vous</h1>
-      <p className="mt-2 max-w-xl font-corps text-encreDoux">
-        La vue complète des rendez-vous (par jour, par réceptif, par agent, par
-        créneau et par salle) arrivera avec le moteur de prise de rendez-vous.
-        Elle inclura la supervision en temps réel et les exports.
+      <p className="mb-6 mt-1 font-corps text-sm text-encreDoux">
+        Tous les rendez-vous confirmés — filtrez et exportez.
       </p>
+      <RdvTable rows={rows} />
     </div>
   );
 }

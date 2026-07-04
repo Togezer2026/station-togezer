@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { JOURS, labelJour } from "@/lib/jours";
-import { CRENEAUX_MATIN, affiche, normDebut } from "@/lib/creneaux";
+import { CRENEAUX_MATIN, CRENEAUX_APREM, affiche, normDebut } from "@/lib/creneaux";
 
 export type Presence = { jour: string; formule: string };
 export type Receptif = {
@@ -74,9 +74,11 @@ export default function Booking({
     ? JOURS.filter(
         (j) =>
           joursAgent.includes(j.iso) &&
-          selReceptif.presences.some((p) => p.jour === j.iso && BREAKFAST.has(p.formule)),
+          selReceptif.presences.some((p) => p.jour === j.iso),
       )
     : [];
+  const formuleJour = (iso: string) =>
+    selReceptif?.presences.find((p) => p.jour === iso)?.formule ?? "absent";
 
   useEffect(() => {
     if (selReceptif) joursDuReceptif.forEach((j) => loadOcc(selReceptif.id, j.iso));
@@ -113,6 +115,47 @@ export default function Booking({
     }
     await Promise.all([loadMes(), loadOcc(expoId, jour)]);
   }
+
+  // Rendu d'un créneau (matin ou après-midi) — logique de conflit partagée
+  const renderSlot = (hhmm: string, jourIso: string, taken: Set<string>) => {
+    if (!selReceptif) return null;
+    const slotKey = `${jourIso} ${hhmm}`;
+    const mien = monEngagementA(jourIso, hhmm);
+    const estMien = mien && mien.exposant_id === selReceptif.id;
+    const prisAilleurs = mien && mien.exposant_id !== selReceptif.id;
+    const occupe = taken.has(slotKey);
+    const b = `${selReceptif.id}_${jourIso}_${hhmm}`;
+
+    if (estMien)
+      return (
+        <button key={hhmm} onClick={() => annuler(mien!.id, selReceptif.id, jourIso)}
+          disabled={busy === mien!.id} title="Votre rendez-vous — cliquez pour annuler"
+          className="rounded-lg border border-brique bg-brique px-2 py-2 font-corps text-sm text-creme">
+          {affiche(hhmm)} ✓
+        </button>
+      );
+    if (prisAilleurs)
+      return (
+        <span key={hhmm} title={`Déjà pris : ${mien!.exposant_nom}`}
+          className="rounded-lg border border-ligne bg-creme px-2 py-2 text-center font-corps text-sm text-encre/30">
+          {affiche(hhmm)}
+        </span>
+      );
+    if (occupe)
+      return (
+        <span key={hhmm} title="Créneau déjà réservé"
+          className="rounded-lg border border-ligne bg-creme px-2 py-2 text-center font-corps text-sm text-encre/25 line-through">
+          {affiche(hhmm)}
+        </span>
+      );
+    return (
+      <button key={hhmm} onClick={() => reserver(selReceptif.id, jourIso, hhmm)}
+        disabled={busy === b}
+        className="rounded-lg border border-encre/20 bg-white px-2 py-2 font-corps text-sm text-encre transition hover:border-brique hover:bg-brique/5">
+        {affiche(hhmm)}
+      </button>
+    );
+  };
 
   return (
     <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
@@ -151,7 +194,7 @@ export default function Booking({
             <h3 className="font-titre text-2xl font-600 text-encre">
               {selReceptif.nom}
               <span className="ml-2 font-corps text-sm text-encreDoux">
-                Petit-déjeuner · créneaux de 20 min
+                réservez vos créneaux
               </span>
             </h3>
             {erreur && (
@@ -160,61 +203,33 @@ export default function Booking({
               </p>
             )}
             {joursDuReceptif.map((j) => {
-              const key = `${selReceptif.id}_${j.iso}`;
-              const taken = occ[key] ?? new Set<string>();
+              const taken = occ[`${selReceptif.id}_${j.iso}`] ?? new Set<string>();
+              const formule = formuleJour(j.iso);
+              const showMatin = BREAKFAST.has(formule);
+              const showAprem = formule === "journee";
               return (
                 <div key={j.iso} className="rounded-xl border border-ligne bg-carte p-4 shadow-carte">
                   <p className="mb-3 font-titre text-lg font-600 text-encre">{j.label}</p>
-                  <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-6">
-                    {CRENEAUX_MATIN.map((hhmm) => {
-                      const slotKey = `${j.iso} ${hhmm}`;
-                      const mien = monEngagementA(j.iso, hhmm);
-                      const estMien = mien && mien.exposant_id === selReceptif.id;
-                      const prisAilleurs = mien && mien.exposant_id !== selReceptif.id;
-                      const occupe = taken.has(slotKey);
-                      const b = `${selReceptif.id}_${j.iso}_${hhmm}`;
-
-                      if (estMien) {
-                        return (
-                          <button
-                            key={hhmm}
-                            onClick={() => annuler(mien!.id, selReceptif.id, j.iso)}
-                            disabled={busy === mien!.id}
-                            title="Votre rendez-vous — cliquez pour annuler"
-                            className="rounded-lg border border-brique bg-brique px-2 py-2 font-corps text-sm text-creme"
-                          >
-                            {affiche(hhmm)} ✓
-                          </button>
-                        );
-                      }
-                      if (prisAilleurs) {
-                        return (
-                          <span key={hhmm} title={`Déjà pris : ${mien!.exposant_nom}`}
-                            className="rounded-lg border border-ligne bg-creme px-2 py-2 text-center font-corps text-sm text-encre/30">
-                            {affiche(hhmm)}
-                          </span>
-                        );
-                      }
-                      if (occupe) {
-                        return (
-                          <span key={hhmm} title="Créneau déjà réservé"
-                            className="rounded-lg border border-ligne bg-creme px-2 py-2 text-center font-corps text-sm text-encre/25 line-through">
-                            {affiche(hhmm)}
-                          </span>
-                        );
-                      }
-                      return (
-                        <button
-                          key={hhmm}
-                          onClick={() => reserver(selReceptif.id, j.iso, hhmm)}
-                          disabled={busy === b}
-                          className="rounded-lg border border-encre/20 bg-white px-2 py-2 font-corps text-sm text-encre transition hover:border-brique hover:bg-brique/5"
-                        >
-                          {affiche(hhmm)}
-                        </button>
-                      );
-                    })}
-                  </div>
+                  {showMatin && (
+                    <div className="mb-4">
+                      <p className="mb-2 font-corps text-xs font-600 uppercase tracking-wide text-encreDoux">
+                        Petit-déjeuner · 20 min
+                      </p>
+                      <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-6">
+                        {CRENEAUX_MATIN.map((hhmm) => renderSlot(hhmm, j.iso, taken))}
+                      </div>
+                    </div>
+                  )}
+                  {showAprem && (
+                    <div>
+                      <p className="mb-2 font-corps text-xs font-600 uppercase tracking-wide text-encreDoux">
+                        Après-midi · 30 min
+                      </p>
+                      <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-6">
+                        {CRENEAUX_APREM.map((hhmm) => renderSlot(hhmm, j.iso, taken))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               );
             })}
