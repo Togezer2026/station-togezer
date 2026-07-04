@@ -1,4 +1,15 @@
 -- =====================================================================
+--  Champs additionnels sur les exposants (données d'inscription réelles,
+--  utiles à l'administration).
+-- =====================================================================
+alter table exposants
+  add column if not exists contact_nom  text,
+  add column if not exists whatsapp     text,
+  add column if not exists nb_personnes int,
+  add column if not exists notes        text,
+  add column if not exists representant text;
+
+-- =====================================================================
 --  Seed exposants — liste RÉELLE des inscrits (généré par scripts/gen-seed.mjs)
 --  SÉCURITÉ : aucun e-mail réel. Tous les contacts = martin@togezer.travel.
 --  NE PAS éditer à la main.

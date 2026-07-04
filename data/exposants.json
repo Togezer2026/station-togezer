@@ -1,151 +1,1139 @@
 [
   {
+    "slug": "serengeti-big-cats-safaris",
+    "nom": "Serengeti Big Cats Safaris",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "TANZANIE",
+    "continent_principal": "Afrique",
+    "destinations_secondaires": [],
+    "description": "TANZANIE",
+    "contact_nom": "CECILE",
+    "whatsapp": "+255767070880",
+    "nb_personnes": 2,
+    "notes": "J'accompagnerai Mathilde",
+    "representant": "Mathilde Quéva",
+    "couleur": "#8C3A2F",
+    "presences": {
+      "mardi": {
+        "formule": "petits_dej"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "absent"
+      }
+    }
+  },
+  {
+    "slug": "african-eagle-namibie",
+    "nom": "African Eagle Namibie",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "NAMIBIE",
+    "continent_principal": "Afrique",
+    "destinations_secondaires": [],
+    "description": "NAMIBIE",
+    "contact_nom": "CHRISTIAN MUTONJI",
+    "whatsapp": "+264813268386",
+    "nb_personnes": 1,
+    "notes": null,
+    "representant": null,
+    "couleur": "#B0503C",
+    "presences": {
+      "mardi": {
+        "formule": "petits_dej"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "petits_dej"
+      }
+    }
+  },
+  {
+    "slug": "algerie-tours",
+    "nom": "Algerie Tours",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "ALGERIE",
+    "continent_principal": "Afrique",
+    "destinations_secondaires": [],
+    "description": "ALGERIE",
+    "contact_nom": "Amine LAGOUNE",
+    "whatsapp": "+33615325916",
+    "nb_personnes": 1,
+    "notes": "Le tarif est bien pour les 03 Matinées ?",
+    "representant": null,
+    "couleur": "#C1902F",
+    "presences": {
+      "mardi": {
+        "formule": "petits_dej"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "petits_dej"
+      }
+    }
+  },
+  {
+    "slug": "archipel-contact",
+    "nom": "archipel contact",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "indonésie",
+    "continent_principal": "Asie",
+    "destinations_secondaires": [],
+    "description": "indonésie",
+    "contact_nom": "sylvie ponte",
+    "whatsapp": "+33659884894",
+    "nb_personnes": 2,
+    "notes": null,
+    "representant": null,
+    "couleur": "#4E827D",
+    "presences": {
+      "mardi": {
+        "formule": "petits_dej"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "absent"
+      }
+    }
+  },
+  {
+    "slug": "atypique-indonesie",
+    "nom": "Atypique Indonésie",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Indonésie",
+    "continent_principal": "Asie",
+    "destinations_secondaires": [],
+    "description": "Indonésie",
+    "contact_nom": "Gauthier Touraine",
+    "whatsapp": "+6281238110668",
+    "nb_personnes": 1,
+    "notes": null,
+    "representant": null,
+    "couleur": "#93A079",
+    "presences": {
+      "mardi": {
+        "formule": "petits_dej"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "petits_dej"
+      }
+    }
+  },
+  {
     "slug": "atypique-voyages",
     "nom": "Atypique Voyages",
     "email_contact": "martin@togezer.travel",
     "pays_principal": "Sri Lanka",
     "continent_principal": "Asie",
     "destinations_secondaires": [
-      { "pays": "Maldives", "continent": "Asie" },
-      { "pays": "Inde du Sud", "continent": "Asie" }
+      {
+        "pays": "Maldives",
+        "continent": "Asie"
+      },
+      {
+        "pays": "Vietnam et Philippines",
+        "continent": "Asie"
+      }
     ],
-    "description": "Réceptif spécialiste du Sri Lanka authentique — trains de montagne, plantations de thé et plages du Sud. Propose aussi des extensions balnéaires aux Maldives et des circuits culturels en Inde du Sud.",
-    "couleur": "#0E7C66",
+    "description": "Sri Lanka, Maldives, Vietnam et Philippines",
+    "contact_nom": "Chamika Kathri Arachchige",
+    "whatsapp": "+94766451002",
+    "nb_personnes": 2,
+    "notes": null,
+    "representant": null,
+    "couleur": "#6B7A8F",
     "presences": {
-      "mardi": { "formule": "journee", "presentation": true, "theme": "Le Sri Lanka au-delà des sentiers battus" },
-      "mercredi": { "formule": "journee", "presentation": false, "theme": "" },
-      "jeudi": { "formule": "absent" }
+      "mardi": {
+        "formule": "petits_dej"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "petits_dej"
+      }
     }
   },
   {
-    "slug": "bretzel-travel",
+    "slug": "bretzel-travel-gmbh",
     "nom": "BRETZEL Travel GmbH",
     "email_contact": "martin@togezer.travel",
     "pays_principal": "Allemagne",
     "continent_principal": "Europe",
     "destinations_secondaires": [
-      { "pays": "Autriche", "continent": "Europe" },
-      { "pays": "Suisse", "continent": "Europe" }
+      {
+        "pays": "Autriche",
+        "continent": "Europe"
+      }
     ],
-    "description": "DMC germanophone couvrant l'Allemagne (routes romantiques, Bavière, Berlin) ainsi que l'Autriche et la Suisse. Marchés de Noël, randonnées alpines et city-breaks culturels.",
-    "couleur": "#B5461E",
+    "description": "Allemagne, Autriche",
+    "contact_nom": "Léna Schneider",
+    "whatsapp": "celui d'Hugo pour le moment +4915290088286",
+    "nb_personnes": 2,
+    "notes": null,
+    "representant": null,
+    "couleur": "#9C5518",
     "presences": {
-      "mardi": { "formule": "biz_biz", "presentation": false, "theme": "" },
-      "mercredi": { "formule": "absent" },
-      "jeudi": { "formule": "journee", "presentation": false, "theme": "" }
+      "mardi": {
+        "formule": "petits_dej"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "absent"
+      }
     }
   },
   {
-    "slug": "brightside-travel",
+    "slug": "brightside-travel-ltd",
     "nom": "Brightside Travel LTD",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "Royaume-Uni",
+    "pays_principal": "Grande Bretagne et Irlande",
     "continent_principal": "Europe",
-    "destinations_secondaires": [
-      { "pays": "Irlande", "continent": "Europe" },
-      { "pays": "Écosse", "continent": "Europe" }
-    ],
-    "description": "Réceptif britannique basé à Londres, expert des îles Britanniques : Angleterre, Écosse des Highlands et Irlande verdoyante. Autotours, châteaux et pubs de charme.",
-    "couleur": "#274690",
+    "destinations_secondaires": [],
+    "description": "Grande Bretagne et Irlande",
+    "contact_nom": "Loic Acosta",
+    "whatsapp": "+447447013109",
+    "nb_personnes": 2,
+    "notes": null,
+    "representant": null,
+    "couleur": "#7A5C8E",
     "presences": {
-      "mardi": { "formule": "petits_dej", "presentation": false, "theme": "" },
-      "mercredi": { "formule": "petits_dej", "presentation": false, "theme": "" },
-      "jeudi": { "formule": "absent" }
+      "mardi": {
+        "formule": "petits_dej"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "petits_dej"
+      }
     }
   },
   {
     "slug": "contact-voyages-senegal",
-    "nom": "Contact Voyages Sénégal",
+    "nom": "Contact Voyages SÉNÉGal",
     "email_contact": "martin@togezer.travel",
     "pays_principal": "Sénégal",
     "continent_principal": "Afrique",
-    "destinations_secondaires": [
-      { "pays": "Gambie", "continent": "Afrique" },
-      { "pays": "Cap-Vert", "continent": "Afrique" }
-    ],
-    "description": "Réceptif sénégalais ancré à Dakar : Lac Rose, Saint-Louis et Sine-Saloum. Étend son savoir-faire à la Gambie fluviale et aux îles du Cap-Vert.",
-    "couleur": "#1E7A3D",
+    "destinations_secondaires": [],
+    "description": "Sénégal",
+    "contact_nom": "Abou BA",
+    "whatsapp": "00221766836438",
+    "nb_personnes": 1,
+    "notes": null,
+    "representant": null,
+    "couleur": "#4F7A52",
     "presences": {
-      "mardi": { "formule": "petits_dej", "presentation": false, "theme": "" },
-      "mercredi": { "formule": "petits_dej", "presentation": false, "theme": "" },
-      "jeudi": { "formule": "absent" }
+      "mardi": {
+        "formule": "absent"
+      },
+      "mercredi": {
+        "formule": "absent"
+      },
+      "jeudi": {
+        "formule": "biz_biz"
+      }
     }
   },
   {
     "slug": "elite-american-voyages",
-    "nom": "Elite American Voyages",
+    "nom": "elite american voyages",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "États-Unis",
+    "pays_principal": "USA CANADA BAHAMAS",
     "continent_principal": "Amériques",
-    "destinations_secondaires": [
-      { "pays": "Canada", "continent": "Amériques" },
-      { "pays": "Mexique", "continent": "Amériques" }
-    ],
-    "description": "Réceptif nord-américain : parcs de l'Ouest américain, road-trips Route 66 et villes mythiques. Propose aussi l'Ouest canadien et les plages du Mexique.",
-    "couleur": "#8A2846",
+    "destinations_secondaires": [],
+    "description": "USA CANADA BAHAMAS",
+    "contact_nom": "JOHAN MIQUEL",
+    "whatsapp": "+33669064338",
+    "nb_personnes": 1,
+    "notes": "Tara, notre cheffe de production, sera présente lors des petit-déj.",
+    "representant": null,
+    "couleur": "#A34A5E",
     "presences": {
-      "mardi": { "formule": "petits_dej", "presentation": false, "theme": "" },
-      "mercredi": { "formule": "petits_dej", "presentation": false, "theme": "" },
-      "jeudi": { "formule": "absent" }
+      "mardi": {
+        "formule": "petits_dej"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "absent"
+      }
     }
   },
   {
-    "slug": "alkemia",
-    "nom": "Alkémia",
+    "slug": "escapades-madagascar",
+    "nom": "Escapades Madagascar",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "Islande",
+    "pays_principal": "MADAGASCAR",
+    "continent_principal": "Afrique",
+    "destinations_secondaires": [],
+    "description": "MADAGASCAR",
+    "contact_nom": "Mbola RASOANAIVO",
+    "whatsapp": "+261320512626",
+    "nb_personnes": 2,
+    "notes": null,
+    "representant": null,
+    "couleur": "#8C3A2F",
+    "presences": {
+      "mardi": {
+        "formule": "petits_dej"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "petits_dej"
+      }
+    }
+  },
+  {
+    "slug": "evasion-tropicale",
+    "nom": "Evasion Tropicale",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "les Philippines",
+    "continent_principal": "Asie",
+    "destinations_secondaires": [],
+    "description": "les Philippines",
+    "contact_nom": "Kevin Labbe",
+    "whatsapp": "+639291387468",
+    "nb_personnes": 1,
+    "notes": null,
+    "representant": null,
+    "couleur": "#B0503C",
+    "presences": {
+      "mardi": {
+        "formule": "absent"
+      },
+      "mercredi": {
+        "formule": "absent"
+      },
+      "jeudi": {
+        "formule": "petits_dej"
+      }
+    }
+  },
+  {
+    "slug": "go-beyond",
+    "nom": "Go Beyond",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Thaïlande",
+    "continent_principal": "Asie",
+    "destinations_secondaires": [
+      {
+        "pays": "Vietnam",
+        "continent": "Asie"
+      },
+      {
+        "pays": "Chine",
+        "continent": "Asie"
+      },
+      {
+        "pays": "Sri Lanka",
+        "continent": "Asie"
+      }
+    ],
+    "description": "Thaïlande, Vietnam, Chine, Sri Lanka",
+    "contact_nom": "Marc Ruffet",
+    "whatsapp": "+41799112502",
+    "nb_personnes": 1,
+    "notes": null,
+    "representant": null,
+    "couleur": "#C1902F",
+    "presences": {
+      "mardi": {
+        "formule": "petits_dej"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "absent"
+      }
+    }
+  },
+  {
+    "slug": "mai-globe-travels",
+    "nom": "Mai Globe Travels",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Sri Lanka",
+    "continent_principal": "Asie",
+    "destinations_secondaires": [
+      {
+        "pays": "Vietnam",
+        "continent": "Asie"
+      }
+    ],
+    "description": "Sri Lanka, Vietnam",
+    "contact_nom": "Catherine Lebouille",
+    "whatsapp": "0094773240190",
+    "nb_personnes": 1,
+    "notes": null,
+    "representant": null,
+    "couleur": "#4E827D",
+    "presences": {
+      "mardi": {
+        "formule": "absent"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "absent"
+      }
+    }
+  },
+  {
+    "slug": "mozsensations",
+    "nom": "MozSensations",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Mozambique",
+    "continent_principal": "Afrique",
+    "destinations_secondaires": [
+      {
+        "pays": "Zambie",
+        "continent": "Afrique"
+      },
+      {
+        "pays": "Zimbabwe",
+        "continent": "Afrique"
+      }
+    ],
+    "description": "Moz Zam Zim",
+    "contact_nom": "Laurence Caille",
+    "whatsapp": "258848344738",
+    "nb_personnes": 1,
+    "notes": null,
+    "representant": null,
+    "couleur": "#93A079",
+    "presences": {
+      "mardi": {
+        "formule": "petits_dej"
+      },
+      "mercredi": {
+        "formule": "absent"
+      },
+      "jeudi": {
+        "formule": "absent"
+      }
+    }
+  },
+  {
+    "slug": "phima-voyages",
+    "nom": "Phima Voyages",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Nord du Pérou",
+    "continent_principal": "Amériques",
+    "destinations_secondaires": [],
+    "description": "Nord du Pérou",
+    "contact_nom": "Martina Capel",
+    "whatsapp": "(068) 037-0580",
+    "nb_personnes": 1,
+    "notes": null,
+    "representant": null,
+    "couleur": "#6B7A8F",
+    "presences": {
+      "mardi": {
+        "formule": "petits_dej"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "absent"
+      }
+    }
+  },
+  {
+    "slug": "pura-vida-cabo-verde",
+    "nom": "Pura Vida Cabo Verde",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Cap Vert",
+    "continent_principal": "Afrique",
+    "destinations_secondaires": [],
+    "description": "Cap Vert",
+    "contact_nom": "Stan Brun",
+    "whatsapp": "33687852280",
+    "nb_personnes": 1,
+    "notes": null,
+    "representant": null,
+    "couleur": "#9C5518",
+    "presences": {
+      "mardi": {
+        "formule": "absent"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "absent"
+      }
+    }
+  },
+  {
+    "slug": "senses-of-siam",
+    "nom": "Senses of Siam",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Thaïlande",
+    "continent_principal": "Asie",
+    "destinations_secondaires": [],
+    "description": "Thaïlande",
+    "contact_nom": "Charles Dubost",
+    "whatsapp": "+66880928136",
+    "nb_personnes": 2,
+    "notes": null,
+    "representant": null,
+    "couleur": "#7A5C8E",
+    "presences": {
+      "mardi": {
+        "formule": "absent"
+      },
+      "mercredi": {
+        "formule": "journee"
+      },
+      "jeudi": {
+        "formule": "absent"
+      }
+    }
+  },
+  {
+    "slug": "shanti-travel",
+    "nom": "Shanti Travel",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Inde Indo Japon SL Vietnam Philippines",
+    "continent_principal": "Asie",
+    "destinations_secondaires": [],
+    "description": "Inde Indo Japon SL Vietnam Philippines",
+    "contact_nom": "Melissa",
+    "whatsapp": "(065) 277-8609",
+    "nb_personnes": 2,
+    "notes": null,
+    "representant": null,
+    "couleur": "#4F7A52",
+    "presences": {
+      "mardi": {
+        "formule": "petits_dej"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "petits_dej"
+      }
+    }
+  },
+  {
+    "slug": "sikiliza",
+    "nom": "Sikiliza",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "ZIMBABWE BOTSWANA",
+    "continent_principal": "Afrique",
+    "destinations_secondaires": [],
+    "description": "ZIMBABWE BOTSWANA",
+    "contact_nom": "Nathalie CALONNE",
+    "whatsapp": "+263772261831",
+    "nb_personnes": 1,
+    "notes": null,
+    "representant": null,
+    "couleur": "#A34A5E",
+    "presences": {
+      "mardi": {
+        "formule": "petits_dej"
+      },
+      "mercredi": {
+        "formule": "biz_biz"
+      },
+      "jeudi": {
+        "formule": "petits_dej"
+      }
+    }
+  },
+  {
+    "slug": "swiss-travel-tour",
+    "nom": "Swiss Travel Tour",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Suisse",
+    "continent_principal": "Europe",
+    "destinations_secondaires": [],
+    "description": "Suisse",
+    "contact_nom": "Elsa Barrault",
+    "whatsapp": "+41775228980",
+    "nb_personnes": 1,
+    "notes": null,
+    "representant": null,
+    "couleur": "#8C3A2F",
+    "presences": {
+      "mardi": {
+        "formule": "petits_dej"
+      },
+      "mercredi": {
+        "formule": "absent"
+      },
+      "jeudi": {
+        "formule": "absent"
+      }
+    }
+  },
+  {
+    "slug": "tanganyika-expeditions",
+    "nom": "Tanganyika Expeditions",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "TANZANIE",
+    "continent_principal": "Afrique",
+    "destinations_secondaires": [
+      {
+        "pays": "ZANZIBAR",
+        "continent": "Afrique"
+      }
+    ],
+    "description": "TANZANIE/ZANZIBAR",
+    "contact_nom": "Laurent Gavache",
+    "whatsapp": "+33619398800",
+    "nb_personnes": 1,
+    "notes": null,
+    "representant": null,
+    "couleur": "#B0503C",
+    "presences": {
+      "mardi": {
+        "formule": "petits_dej"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "absent"
+      }
+    }
+  },
+  {
+    "slug": "terra-australia",
+    "nom": "Terra Australia",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Australie",
+    "continent_principal": "Océanie",
+    "destinations_secondaires": [],
+    "description": "Australie",
+    "contact_nom": "Christophe Napierai",
+    "whatsapp": "+61405217169",
+    "nb_personnes": 2,
+    "notes": null,
+    "representant": null,
+    "couleur": "#C1902F",
+    "presences": {
+      "mardi": {
+        "formule": "journee"
+      },
+      "mercredi": {
+        "formule": "journee"
+      },
+      "jeudi": {
+        "formule": "journee"
+      }
+    }
+  },
+  {
+    "slug": "terra-balka",
+    "nom": "Terra Balka",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Balkans",
     "continent_principal": "Europe",
     "destinations_secondaires": [
-      { "pays": "Îles Féroé", "continent": "Europe" },
-      { "pays": "Groenland", "continent": "Amériques" }
+      {
+        "pays": "Croatie",
+        "continent": "Europe"
+      },
+      {
+        "pays": "Slovénie",
+        "continent": "Europe"
+      },
+      {
+        "pays": "Monténégro",
+        "continent": "Europe"
+      },
+      {
+        "pays": "Bosnie Herzégovine",
+        "continent": "Europe"
+      },
+      {
+        "pays": "Albanie",
+        "continent": "Europe"
+      },
+      {
+        "pays": "Macédoine",
+        "continent": "Europe"
+      },
+      {
+        "pays": "Kosovo",
+        "continent": "Europe"
+      }
     ],
-    "description": "Spécialiste des terres de feu et de glace : Islande volcanique, aurores boréales, Îles Féroé et Groenland. Petits groupes et logements de caractère.",
-    "couleur": "#3A6EA5",
-    "groupe": "Table Mathilde Quéva",
-    "representant": "Mathilde Quéva",
+    "description": "Balkans (Croatie, Slovénie, Monténégro, Bosnie Herzégovine, Albanie, Macédoine, Kosovo)",
+    "contact_nom": "Hugo DIMOFF",
+    "whatsapp": "+33 6 45 56 83 12",
+    "nb_personnes": 2,
+    "notes": "Hugo et John seront présents.",
+    "representant": null,
+    "couleur": "#4E827D",
     "presences": {
-      "mardi": { "formule": "petits_dej", "presentation": false, "theme": "" },
-      "mercredi": { "formule": "petits_dej", "presentation": false, "theme": "" },
-      "jeudi": { "formule": "petits_dej", "presentation": false, "theme": "" }
+      "mardi": {
+        "formule": "journee"
+      },
+      "mercredi": {
+        "formule": "journee"
+      },
+      "jeudi": {
+        "formule": "journee"
+      }
     }
   },
   {
-    "slug": "tamazirt",
-    "nom": "Tamazirt",
+    "slug": "terra-chile",
+    "nom": "Terra Chile",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "Maroc",
-    "continent_principal": "Afrique",
-    "destinations_secondaires": [
-      { "pays": "Mauritanie", "continent": "Afrique" }
-    ],
-    "description": "Réceptif marocain du grand Sud : dunes de Merzouga, médinas impériales et vallées de l'Atlas. Ouvre aussi ses pistes vers les déserts de Mauritanie.",
-    "couleur": "#C08421",
-    "groupe": "Table Mathilde Quéva",
-    "representant": "Mathilde Quéva",
+    "pays_principal": "Chili",
+    "continent_principal": "Amériques",
+    "destinations_secondaires": [],
+    "description": "Chili",
+    "contact_nom": "Océane Vigné",
+    "whatsapp": "+33672145147",
+    "nb_personnes": 1,
+    "notes": null,
+    "representant": null,
+    "couleur": "#93A079",
     "presences": {
-      "mardi": { "formule": "petits_dej", "presentation": false, "theme": "" },
-      "mercredi": { "formule": "petits_dej", "presentation": false, "theme": "" },
-      "jeudi": { "formule": "petits_dej", "presentation": false, "theme": "" }
+      "mardi": {
+        "formule": "petits_dej"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "petits_dej"
+      }
     }
   },
   {
-    "slug": "serengeti",
-    "nom": "Serengeti",
+    "slug": "terra-dominicana",
+    "nom": "Terra Dominicana",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "Tanzanie",
-    "continent_principal": "Afrique",
-    "destinations_secondaires": [
-      { "pays": "Kenya", "continent": "Afrique" },
-      { "pays": "Zanzibar", "continent": "Afrique" }
-    ],
-    "description": "Réceptif safari en Afrique de l'Est : grande migration du Serengeti, cratère du Ngorongoro, réserves du Kenya et plages de Zanzibar.",
+    "pays_principal": "République Dominicaine",
+    "continent_principal": "Amériques",
+    "destinations_secondaires": [],
+    "description": "République Dominicaine",
+    "contact_nom": "Laura grenouillet",
+    "whatsapp": "+50688631070",
+    "nb_personnes": 1,
+    "notes": null,
+    "representant": null,
+    "couleur": "#6B7A8F",
+    "presences": {
+      "mardi": {
+        "formule": "absent"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "absent"
+      }
+    }
+  },
+  {
+    "slug": "terra-gaia-altiplano",
+    "nom": "Terra Gaïa Altiplano",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Argentine : Nord ouest Argentine & Altiplano",
+    "continent_principal": "Amériques",
+    "destinations_secondaires": [],
+    "description": "Argentine : Nord ouest Argentine & Altiplano",
+    "contact_nom": "antoine dekyvere",
+    "whatsapp": "+5493874872449",
+    "nb_personnes": 1,
+    "notes": "c'est quoi la salle de conference ? different du bureau l'apres midi ?",
+    "representant": null,
     "couleur": "#9C5518",
-    "groupe": "Table Mathilde Quéva",
-    "representant": "Mathilde Quéva",
     "presences": {
-      "mardi": { "formule": "petits_dej", "presentation": false, "theme": "" },
-      "mercredi": { "formule": "petits_dej", "presentation": false, "theme": "" },
-      "jeudi": { "formule": "petits_dej", "presentation": false, "theme": "" }
+      "mardi": {
+        "formule": "journee"
+      },
+      "mercredi": {
+        "formule": "journee"
+      },
+      "jeudi": {
+        "formule": "journee"
+      }
+    }
+  },
+  {
+    "slug": "terra-gaia-argentina",
+    "nom": "Terra Gaïa Argentina",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Argentine",
+    "continent_principal": "Amériques",
+    "destinations_secondaires": [],
+    "description": "Argentine",
+    "contact_nom": "Emilie Pinel",
+    "whatsapp": "+5492944925934",
+    "nb_personnes": 1,
+    "notes": null,
+    "representant": null,
+    "couleur": "#7A5C8E",
+    "presences": {
+      "mardi": {
+        "formule": "petits_dej"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "petits_dej"
+      }
+    }
+  },
+  {
+    "slug": "terra-gaia-bolivia",
+    "nom": "Terra Gaia Bolivia",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "La Bolivie",
+    "continent_principal": "Amériques",
+    "destinations_secondaires": [],
+    "description": "La Bolivie",
+    "contact_nom": "Antoine Mayer",
+    "whatsapp": "+33 6 95 18 14 18",
+    "nb_personnes": 1,
+    "notes": null,
+    "representant": null,
+    "couleur": "#4F7A52",
+    "presences": {
+      "mardi": {
+        "formule": "biz_biz"
+      },
+      "mercredi": {
+        "formule": "biz_biz"
+      },
+      "jeudi": {
+        "formule": "biz_biz"
+      }
+    }
+  },
+  {
+    "slug": "terra-gaia-brazil",
+    "nom": "Terra Gaïa Brazil",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Brésil",
+    "continent_principal": "Amériques",
+    "destinations_secondaires": [],
+    "description": "Brésil",
+    "contact_nom": "Alice Prevot",
+    "whatsapp": "'+55 (21) 99696-4039",
+    "nb_personnes": 2,
+    "notes": null,
+    "representant": null,
+    "couleur": "#A34A5E",
+    "presences": {
+      "mardi": {
+        "formule": "journee"
+      },
+      "mercredi": {
+        "formule": "journee"
+      },
+      "jeudi": {
+        "formule": "journee"
+      }
+    }
+  },
+  {
+    "slug": "terra-gaia-ecuador-galapagos",
+    "nom": "Terra Gaia Ecuador & Galápagos",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Équateur et Galapagos",
+    "continent_principal": "Amériques",
+    "destinations_secondaires": [],
+    "description": "Équateur et Galapagos",
+    "contact_nom": "Nicolas Goronflot",
+    "whatsapp": "+593987159732",
+    "nb_personnes": 2,
+    "notes": null,
+    "representant": null,
+    "couleur": "#8C3A2F",
+    "presences": {
+      "mardi": {
+        "formule": "journee"
+      },
+      "mercredi": {
+        "formule": "journee"
+      },
+      "jeudi": {
+        "formule": "journee"
+      }
+    }
+  },
+  {
+    "slug": "terra-guatemala",
+    "nom": "Terra Guatemala",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Guatemala Belize",
+    "continent_principal": "Amériques",
+    "destinations_secondaires": [],
+    "description": "Guatemala Belize",
+    "contact_nom": "Tristan Reger",
+    "whatsapp": "(502) 3684 7687",
+    "nb_personnes": 2,
+    "notes": null,
+    "representant": null,
+    "couleur": "#B0503C",
+    "presences": {
+      "mardi": {
+        "formule": "petits_dej"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "absent"
+      }
+    }
+  },
+  {
+    "slug": "terra-maya",
+    "nom": "Terra Maya",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "MEXIQUE",
+    "continent_principal": "Amériques",
+    "destinations_secondaires": [],
+    "description": "MEXIQUE",
+    "contact_nom": "Adelind Chambrier",
+    "whatsapp": "(999) 366-7552",
+    "nb_personnes": 2,
+    "notes": null,
+    "representant": null,
+    "couleur": "#C1902F",
+    "presences": {
+      "mardi": {
+        "formule": "petits_dej"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "absent"
+      }
+    }
+  },
+  {
+    "slug": "terra-morocco",
+    "nom": "terra morocco",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "maroc",
+    "continent_principal": "Afrique",
+    "destinations_secondaires": [],
+    "description": "maroc",
+    "contact_nom": "laura",
+    "whatsapp": "00212662343381",
+    "nb_personnes": 2,
+    "notes": null,
+    "representant": null,
+    "couleur": "#4E827D",
+    "presences": {
+      "mardi": {
+        "formule": "petits_dej"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "petits_dej"
+      }
+    }
+  },
+  {
+    "slug": "terra-nicaragua",
+    "nom": "Terra Nicaragua",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "NICARAGUA",
+    "continent_principal": "Amériques",
+    "destinations_secondaires": [],
+    "description": "NICARAGUA",
+    "contact_nom": "Daphné de Vautibault",
+    "whatsapp": "+502 35897157",
+    "nb_personnes": 1,
+    "notes": null,
+    "representant": null,
+    "couleur": "#93A079",
+    "presences": {
+      "mardi": {
+        "formule": "absent"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "absent"
+      }
+    }
+  },
+  {
+    "slug": "terra-peru",
+    "nom": "Terra Peru",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Peru",
+    "continent_principal": "Amériques",
+    "destinations_secondaires": [],
+    "description": "Peru",
+    "contact_nom": "Vicky Minaya",
+    "whatsapp": "+51 940203741",
+    "nb_personnes": 1,
+    "notes": null,
+    "representant": null,
+    "couleur": "#6B7A8F",
+    "presences": {
+      "mardi": {
+        "formule": "petits_dej"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "petits_dej"
+      }
+    }
+  },
+  {
+    "slug": "tierra-latina-argentine-bresil",
+    "nom": "Tierra Latina Argentine / Brésil",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Argentine",
+    "continent_principal": "Amériques",
+    "destinations_secondaires": [
+      {
+        "pays": "Brésil",
+        "continent": "Amériques"
+      },
+      {
+        "pays": "Mexique",
+        "continent": "Amériques"
+      }
+    ],
+    "description": "Argentine / Brésil / Mexique",
+    "contact_nom": "Chloé Proust",
+    "whatsapp": "+33628229162",
+    "nb_personnes": 2,
+    "notes": null,
+    "representant": null,
+    "couleur": "#9C5518",
+    "presences": {
+      "mardi": {
+        "formule": "absent"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "absent"
+      }
+    }
+  },
+  {
+    "slug": "viasuntours",
+    "nom": "Viasuntours",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Grèce",
+    "continent_principal": "Europe",
+    "destinations_secondaires": [],
+    "description": "Grèce",
+    "contact_nom": "Charles",
+    "whatsapp": "00306936021114",
+    "nb_personnes": 1,
+    "notes": null,
+    "representant": null,
+    "couleur": "#7A5C8E",
+    "presences": {
+      "mardi": {
+        "formule": "petits_dej"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "petits_dej"
+      }
+    }
+  },
+  {
+    "slug": "wakiy-tour",
+    "nom": "Wakiy Tour",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Equateur",
+    "continent_principal": "Amériques",
+    "destinations_secondaires": [],
+    "description": "Equateur",
+    "contact_nom": "Olivia Baine",
+    "whatsapp": "0033648393511",
+    "nb_personnes": 1,
+    "notes": null,
+    "representant": null,
+    "couleur": "#4F7A52",
+    "presences": {
+      "mardi": {
+        "formule": "journee"
+      },
+      "mercredi": {
+        "formule": "absent"
+      },
+      "jeudi": {
+        "formule": "absent"
+      }
+    }
+  },
+  {
+    "slug": "xplore",
+    "nom": "Xplore",
+    "email_contact": "martin@togezer.travel",
+    "pays_principal": "Mexique",
+    "continent_principal": "Amériques",
+    "destinations_secondaires": [
+      {
+        "pays": "Oman",
+        "continent": "Asie"
+      },
+      {
+        "pays": "Brésil",
+        "continent": "Amériques"
+      },
+      {
+        "pays": "Indonésie",
+        "continent": "Asie"
+      }
+    ],
+    "description": "Mexique, Oman, Brésil, Indonésie",
+    "contact_nom": "Benjamin SENOUSSI",
+    "whatsapp": "+33683112966",
+    "nb_personnes": 2,
+    "notes": "Hola, Nous nous mettrons sur la desti sur laquelle vous pourrez nous trouver une petite place :)",
+    "representant": null,
+    "couleur": "#A34A5E",
+    "presences": {
+      "mardi": {
+        "formule": "journee"
+      },
+      "mercredi": {
+        "formule": "petits_dej"
+      },
+      "jeudi": {
+        "formule": "absent"
+      }
     }
   }
 ]
