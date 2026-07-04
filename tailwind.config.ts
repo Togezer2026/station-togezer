@@ -22,8 +22,8 @@ export default {
         zSauge: "#93A079",
       },
       fontFamily: {
-        titre: ["var(--font-titre)", "Cormorant Garamond", "Georgia", "serif"],
-        corps: ["var(--font-corps)", "Mulish", "ui-sans-serif", "system-ui", "sans-serif"],
+        titre: ['"Cormorant Garamond"', "Georgia", "serif"],
+        corps: ['"Mulish"', "ui-sans-serif", "system-ui", "sans-serif"],
       },
       boxShadow: {
         carte: "0 1px 2px rgba(59,47,38,0.04), 0 10px 30px rgba(59,47,38,0.05)",

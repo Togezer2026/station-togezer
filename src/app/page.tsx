@@ -1,8 +1,26 @@
 import Link from "next/link";
 import Wordmark from "@/components/Wordmark";
-import { HorlogeQuai, FiletGare } from "@/components/Ornaments";
+import { FiletGare } from "@/components/Ornaments";
 
 const MAPS_URL = "https://maps.app.goo.gl/BaG2dEYZsWxJaT3e9";
+
+const PROGRAMME = [
+  {
+    h: "09h00 – 13h00",
+    t: "Petits-déjeuners",
+    d: "Nos fameux rendez-vous du matin, en tête-à-tête.",
+  },
+  {
+    h: "13h00 – 14h00",
+    t: "Déjeuner business",
+    d: "La nouveauté — offert aux agents, sur réservation.",
+  },
+  {
+    h: "14h00 – 18h00",
+    t: "Rendez-vous & formations",
+    d: "Une formation d'une heure par destination.",
+  },
+];
 
 const ETAPES = [
   {
@@ -20,49 +38,75 @@ const ETAPES = [
 export default function Home() {
   return (
     <main className="min-h-screen">
-      {/* Hero — crème, aéré ; le Z est la seule fantaisie */}
-      <section className="mx-auto max-w-3xl px-6 pb-20 pt-16 text-center sm:pt-24">
-        <div className="mb-10 flex items-center justify-center text-encreDoux">
-          <HorlogeQuai className="h-8 w-8" />
-        </div>
+      {/* En-tête — logo en haut à gauche */}
+      <header className="mx-auto flex max-w-5xl items-center justify-between px-6 pt-8">
+        <Wordmark className="h-auto w-[175px]" />
+        <Link
+          href="/annuaire"
+          className="hidden font-corps text-sm text-encreDoux underline-offset-4 hover:text-encre hover:underline sm:inline"
+        >
+          Les exposants
+        </Link>
+      </header>
 
-        <p className="text-[0.7rem] font-600 uppercase tracking-[0.38em] text-brique">
-          Gratuit pour les agents de voyage
+      {/* Hero */}
+      <section className="mx-auto max-w-3xl px-6 pb-16 pt-12 text-center sm:pt-16">
+        <h1 className="font-titre text-5xl font-600 leading-[1.05] text-encre sm:text-6xl">
+          Bienvenue à bord,<br />le hub des réceptifs
+        </h1>
+
+        <p className="mx-auto mt-7 max-w-xl font-corps text-lg leading-relaxed text-encreDoux">
+          La Station TogeZer, c'est avant tout un lieu chaleureux où les agents de
+          voyage et les réceptifs se rencontrent pour de vrai. Nos fameux
+          petits-déjeuners, un déjeuner business offert aux agents — la nouveauté
+          de l'année ! — et des après-midis de rendez-vous ponctués de formations
+          par destination. Trois journées pour tisser des liens, dénicher les
+          nouveautés et repartir des étoiles plein les yeux.
         </p>
 
-        <div className="mt-8 flex justify-center">
-          <Wordmark className="h-auto w-[340px] max-w-full sm:w-[440px]" />
+        {/* Tableau horaire — esprit panneau de quai */}
+        <div className="mt-10 grid gap-px overflow-hidden rounded-xl border border-ligne bg-ligne sm:grid-cols-3">
+          {PROGRAMME.map((p) => (
+            <div key={p.t} className="bg-carte px-5 py-5 text-center">
+              <p className="font-titre text-lg font-600 text-brique">{p.h}</p>
+              <p className="mt-1 font-corps text-sm font-600 text-encre">{p.t}</p>
+              <p className="mt-1 font-corps text-xs leading-snug text-encreDoux">
+                {p.d}
+              </p>
+            </div>
+          ))}
         </div>
 
-        <p className="mx-auto mt-9 max-w-lg font-corps text-lg leading-relaxed text-encreDoux">
-          Trois journées de rendez-vous privilégiés entre agents de voyage et nos
-          réceptifs partenaires. Inscrivez-vous, puis composez votre programme.
-        </p>
-
-        <p className="mt-9 font-titre text-3xl font-500 tracking-wide text-encre">
+        {/* Dates + lieu */}
+        <p className="mt-10 font-titre text-2xl font-500 tracking-wide text-encre">
           Mardi 15, mercredi 16 &amp; jeudi 17 septembre 2026
         </p>
-
-        {/* plaque émaillée — signalétique « Voie 15 » */}
-        <div className="mt-6 flex justify-center">
-          <span className="inline-block rounded-lg border-[3px] border-double border-brique/55 bg-carte px-6 py-2.5 font-corps text-sm tracking-wide text-encre">
+        <div className="mt-4 flex justify-center">
+          <span className="inline-block rounded-lg border-[3px] border-double border-brique/55 bg-carte px-6 py-2 font-corps text-sm tracking-wide text-encre">
             Voie 15 — 397 bis rue de Vaugirard, 75015 Paris · Porte de Versailles
           </span>
         </div>
 
-        <div className="mt-11 flex flex-wrap justify-center gap-4">
-          <Link
-            href="/inscription"
-            className="rounded-full bg-brique px-8 py-3 font-corps font-600 tracking-wide text-creme shadow-carte transition hover:bg-briqueFonce"
-          >
-            Je m'inscris
-          </Link>
-          <Link
-            href="/annuaire"
-            className="rounded-full border border-encre/20 px-8 py-3 font-corps font-500 tracking-wide text-encre transition hover:bg-encre/5"
-          >
-            Voir les exposants
-          </Link>
+        {/* Appel à l'action + gratuité, au point de conversion */}
+        <div className="mt-10 flex flex-col items-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              href="/inscription"
+              className="rounded-full bg-brique px-8 py-3 font-corps font-600 tracking-wide text-creme shadow-carte transition hover:bg-briqueFonce"
+            >
+              Je m'inscris
+            </Link>
+            <Link
+              href="/annuaire"
+              className="rounded-full border border-encre/20 px-8 py-3 font-corps font-500 tracking-wide text-encre transition hover:bg-encre/5"
+            >
+              Voir les exposants
+            </Link>
+          </div>
+          <p className="font-corps text-sm text-encreDoux">
+            Accès <span className="font-600 text-brique">gratuit</span> pour les
+            agents de voyage — sur simple inscription.
+          </p>
         </div>
       </section>
 
