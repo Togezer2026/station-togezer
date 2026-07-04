@@ -134,7 +134,7 @@ export default function AnnuaireClient({
 
         <div className="ml-auto flex items-center gap-3">
           <span className="text-sm text-encre/50">
-            {filtres.length} exposant{filtres.length > 1 ? "s" : ""}
+            {filtres.length} réceptif{filtres.length > 1 ? "s" : ""}
           </span>
           {actif && (
             <button
@@ -150,7 +150,7 @@ export default function AnnuaireClient({
       {/* Grille */}
       {filtres.length === 0 ? (
         <p className="py-16 text-center text-encre/50">
-          Aucun exposant ne correspond à ces filtres.
+          Aucun réceptif ne correspond à ces filtres.
         </p>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -164,56 +164,42 @@ export default function AnnuaireClient({
 }
 
 function ExposantCard({ e }: { e: ExposantAnnuaire }) {
-  const secondaires = e.exposant_destinations;
-  const presentation = e.presences.find((p) => p.tient_presentation && p.theme);
+  const secondaires = e.exposant_destinations.map((d) => d.pays);
   return (
-    <article className="flex flex-col rounded-xl border border-encre/10 bg-carte p-5 shadow-carte">
+    <article className="flex flex-col rounded-xl border border-ligne bg-carte p-5 shadow-carte">
       <div className="flex items-center gap-3">
         {e.logo_path && (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={e.logo_path} alt="" className="h-12 w-12 rounded-xl" />
+          <img src={e.logo_path} alt="" className="h-14 w-14 shrink-0 rounded-lg" />
         )}
-        <div>
-          <h3 className="font-titre text-lg text-encre">{e.nom}</h3>
-          <p className="text-sm text-brique">
-            {e.pays_principal} · {e.continent_principal}
+        <div className="min-w-0">
+          <h3 className="font-titre text-xl font-600 leading-tight text-encre">
+            {e.nom}
+          </h3>
+          <p className="mt-0.5 font-corps text-xs font-600 uppercase tracking-[0.15em] text-encreDoux">
+            {e.continent_principal}
           </p>
         </div>
       </div>
 
-      {e.description && (
-        <p className="mt-3 text-sm text-encre/70">{e.description}</p>
-      )}
+      {/* Destinations : principale en rouge, secondaires en virgules */}
+      <p className="mt-4 font-corps text-sm leading-relaxed">
+        <span className="font-700 text-brique">{e.pays_principal}</span>
+        {secondaires.length > 0 && (
+          <span className="text-encre">{", " + secondaires.join(", ")}</span>
+        )}
+      </p>
 
-      {secondaires.length > 0 && (
-        <div className="mt-3 flex flex-wrap gap-1.5">
-          {secondaires.map((d) => (
-            <span
-              key={d.pays}
-              className="rounded-full bg-creme px-2 py-0.5 text-xs text-encre/60"
-            >
-              {d.pays}
-            </span>
-          ))}
-        </div>
-      )}
-
-      {presentation && (
-        <p className="mt-3 rounded-lg bg-brique/10 px-3 py-2 text-xs text-brique">
-          Présentation : « {presentation.theme} »
-        </p>
-      )}
-
-      <div className="mt-4 flex flex-wrap gap-1.5 border-t border-encre/10 pt-3">
+      <div className="mt-auto flex flex-wrap gap-1.5 border-t border-ligne pt-4">
         {JOURS.map((j) => {
           const p = e.presences.find((pr) => pr.jour === j.iso);
           return (
             <span
               key={j.iso}
-              className={`rounded-md px-2 py-1 text-xs ${
+              className={`rounded-md px-2.5 py-1 text-xs font-500 ${
                 p
                   ? "bg-encre text-creme"
-                  : "bg-creme text-encre/30 line-through"
+                  : "bg-creme text-encre/25 line-through"
               }`}
               title={p ? FORMULE_LABEL[p.formule] : "Absent"}
             >

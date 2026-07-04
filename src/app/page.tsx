@@ -45,7 +45,7 @@ export default function Home() {
           href="/annuaire"
           className="hidden font-corps text-sm text-encreDoux underline-offset-4 hover:text-encre hover:underline sm:inline"
         >
-          Les exposants
+          Les réceptifs
         </Link>
       </header>
 
@@ -100,7 +100,7 @@ export default function Home() {
               href="/annuaire"
               className="rounded-full border border-encre/20 px-8 py-3 font-corps font-500 tracking-wide text-encre transition hover:bg-encre/5"
             >
-              Voir les exposants
+              Voir les réceptifs
             </Link>
           </div>
           <p className="font-corps text-sm text-encreDoux">

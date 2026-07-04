@@ -41,7 +41,7 @@ export default async function AnnuairePage() {
             Nos réceptifs partenaires
           </h1>
           <p className="mt-3 max-w-2xl font-corps text-encreDoux">
-            Parcourez les exposants présents. Filtrez par continent, pays ou jour.
+            Parcourez les réceptifs présents. Filtrez par continent, pays ou jour.
             La liste est consultable en entier ; vous réservez avec ceux présents
             sur vos jours d'inscription.
           </p>

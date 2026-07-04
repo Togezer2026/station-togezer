@@ -71,7 +71,7 @@ export default async function MonEspace() {
           href="/annuaire"
           className="rounded-lg bg-brique px-5 py-2.5 font-medium text-white hover:brightness-110"
         >
-          Voir les exposants
+          Voir les réceptifs
         </Link>
         <span className="self-center text-sm text-encre/40">
           Le choix des jours et la prise de rendez-vous arrivent à l'étape suivante.
