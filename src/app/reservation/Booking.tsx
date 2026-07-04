@@ -100,6 +100,17 @@ export default function Booking({
     if (!error) setEngage(new Date().toISOString());
   }
 
+  const paysDe = (exposantId: string) =>
+    receptifs.find((r) => r.id === exposantId)?.pays_principal ?? "";
+
+  async function annulerTout() {
+    if (!confirm("Réinitialiser : annuler TOUS vos rendez-vous ? Cette action est définitive.")) return;
+    const { error } = await supabase.rpc("annuler_mes_rdv");
+    if (error) return;
+    await loadMes();
+    if (sel) JOURS.filter((j) => joursAgent.includes(j.iso)).forEach((j) => loadOcc(sel, j.iso));
+  }
+
   const selReceptif = bookables.find((r) => r.id === sel) ?? null;
   const joursDuReceptif = selReceptif
     ? JOURS.filter(
@@ -296,29 +307,44 @@ export default function Booking({
       {/* Mon programme */}
       {mes.length > 0 && (
         <div className="lg:col-span-2">
-          <h3 className="mt-2 font-titre text-2xl font-600 text-encre">Mon programme</h3>
+          <div className="mt-2 flex items-center justify-between">
+            <h3 className="font-titre text-2xl font-600 text-encre">Mon programme</h3>
+            <button
+              onClick={annulerTout}
+              className="rounded-full border border-encre/20 px-4 py-1.5 font-corps text-sm text-encreDoux transition hover:border-red-400 hover:text-red-600"
+            >
+              Réinitialiser mes sélections
+            </button>
+          </div>
           <div className="mt-3 space-y-2">
-            {JOURS.filter((j) => mes.some((e) => e.jour === j.iso)).map((j) => (
+            {JOURS.filter((j) => mes.some((e) => e.jour === j.iso)).map((j) => {
+              const duJour = mes
+                .filter((e) => e.jour === j.iso)
+                .sort((a, b) => a.debut.localeCompare(b.debut));
+              return (
               <div key={j.iso} className="rounded-xl border border-ligne bg-carte p-4 shadow-carte">
                 <p className="font-titre text-lg font-600 text-encre">{j.label}</p>
                 <ul className="mt-2 space-y-1 font-corps text-sm text-encre">
-                  {mes
-                    .filter((e) => e.jour === j.iso)
-                    .sort((a, b) => a.debut.localeCompare(b.debut))
-                    .map((e) => (
-                      <li key={e.id} className="flex items-center gap-2">
+                  {duJour.map((e) => (
+                      <li key={e.id} className="flex flex-wrap items-center gap-x-2">
                         <span className="font-600 text-brique">
                           {affiche(normDebut(e.debut).slice(11))}
                         </span>
                         <span>{e.exposant_nom}</span>
+                        <span className="text-encreDoux">· {paysDe(e.exposant_id)}</span>
                         {e.representant && (
                           <span className="text-encreDoux">(avec {e.representant})</span>
                         )}
                       </li>
                     ))}
                 </ul>
+                {/* Timeline du jour */}
+                <div className="mt-3 pb-5">
+                  <Timeline items={duJour} />
+                </div>
               </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Récapitulatif & engagement */}
@@ -360,6 +386,37 @@ export default function Booking({
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+const minutesOf = (ts: string) => {
+  const [h, m] = normDebut(ts).slice(11).split(":").map(Number);
+  return h * 60 + m;
+};
+
+// Frise horaire d'une journée (9h → 18h) montrant les RDV posés.
+function Timeline({ items }: { items: { debut: string; fin: string }[] }) {
+  const START = 9 * 60,
+    END = 18 * 60,
+    SPAN = END - START;
+  return (
+    <div className="relative h-9 rounded-lg border border-ligne bg-creme">
+      {[9, 11, 13, 15, 17].map((h) => (
+        <div key={h} className="absolute top-0 h-full border-l border-ligne/60"
+          style={{ left: `${((h * 60 - START) / SPAN) * 100}%` }}>
+          <span className="absolute -bottom-5 -translate-x-1/2 font-corps text-[10px] text-encreDoux">{h}h</span>
+        </div>
+      ))}
+      {items.map((it, i) => {
+        const s = minutesOf(it.debut),
+          e = minutesOf(it.fin);
+        return (
+          <div key={i} className="absolute bottom-1 top-1 rounded bg-brique"
+            style={{ left: `${((s - START) / SPAN) * 100}%`, width: `${Math.max(1.6, ((e - s) / SPAN) * 100)}%` }}
+            title={`${affiche(normDebut(it.debut).slice(11))}`} />
+        );
+      })}
     </div>
   );
 }
