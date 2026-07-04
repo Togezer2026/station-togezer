@@ -1,0 +1,65 @@
+import { requireAdmin } from "@/lib/admin";
+import { labelJour } from "@/lib/jours";
+
+export const dynamic = "force-dynamic";
+
+type Agent = {
+  id: string;
+  agence: string;
+  prenom: string;
+  nom: string;
+  email: string;
+  telephone: string | null;
+  created_at: string;
+};
+
+export default async function AdminAgents() {
+  const { supabase } = await requireAdmin();
+  const { data: agents } = await supabase
+    .from("agents")
+    .select("id, agence, prenom, nom, email, telephone, created_at")
+    .order("created_at", { ascending: false });
+  const { data: jours } = await supabase.from("agent_jours").select("agent_id, jour");
+
+  const rows = (agents ?? []) as Agent[];
+  const joursByAgent = (id: string) =>
+    (jours ?? []).filter((j) => j.agent_id === id).map((j) => labelJour(j.jour as string));
+
+  return (
+    <div>
+      <h1 className="font-titre text-3xl font-600 text-encre">Agents inscrits</h1>
+      <p className="mt-1 font-corps text-sm text-encreDoux">{rows.length} agent(s).</p>
+
+      {rows.length === 0 ? (
+        <p className="mt-8 font-corps text-encreDoux">
+          Aucun agent inscrit pour l'instant.
+        </p>
+      ) : (
+        <div className="mt-6 overflow-x-auto rounded-xl border border-ligne bg-carte shadow-carte">
+          <table className="w-full text-left font-corps text-sm">
+            <thead className="border-b border-ligne text-xs uppercase tracking-wide text-encreDoux">
+              <tr>
+                <th className="px-4 py-3">Agence</th>
+                <th className="px-4 py-3">Contact</th>
+                <th className="px-4 py-3">E-mail</th>
+                <th className="px-4 py-3">Téléphone</th>
+                <th className="px-4 py-3">Jours</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((a) => (
+                <tr key={a.id} className="border-b border-ligne/60 last:border-0">
+                  <td className="px-4 py-3 font-600 text-encre">{a.agence}</td>
+                  <td className="px-4 py-3 text-encreDoux">{a.prenom} {a.nom}</td>
+                  <td className="px-4 py-3 text-encreDoux">{a.email}</td>
+                  <td className="px-4 py-3 text-encreDoux">{a.telephone ?? "—"}</td>
+                  <td className="px-4 py-3 text-encreDoux">{joursByAgent(a.id).join(", ") || "—"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  );
+}
