@@ -17,19 +17,21 @@ export default function ConnexionPage() {
     setErreur(null);
     setLoading(true);
     const supabase = createClient();
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data: signIn, error } = await supabase.auth.signInWithPassword({
       email: email.trim(),
       password,
     });
-    if (error) {
+    if (error || !signIn.user) {
       setLoading(false);
       setErreur("E-mail ou mot de passe incorrect.");
       return;
     }
-    // On oriente selon le rôle
+    // On oriente selon le rôle (filtré sur l'utilisateur : un admin voit
+    // tous les profils, il faut donc cibler explicitement le sien).
     const { data: prof } = await supabase
       .from("profiles")
       .select("role")
+      .eq("id", signIn.user.id)
       .single();
     const dest =
       prof?.role === "admin"
