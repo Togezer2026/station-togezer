@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import AppHeader from "@/components/AppHeader";
 import JoursSelector from "./JoursSelector";
+import Disponibilites from "./Disponibilites";
 import Booking, { type Receptif } from "./Booking";
 
 export const dynamic = "force-dynamic";
@@ -28,6 +29,7 @@ export default async function Reservation() {
   const jours = (joursRows ?? []).map((r) => r.jour as string);
 
   let receptifs: Receptif[] = [];
+  let fermes: { jour: string; hhmm: string }[] = [];
   if (jours.length > 0) {
     const { data } = await supabase
       .from("exposants")
@@ -36,6 +38,12 @@ export default async function Reservation() {
       )
       .order("nom");
     receptifs = (data ?? []) as unknown as Receptif[];
+
+    const { data: f } = await supabase
+      .from("agent_creneaux_fermes")
+      .select("jour, hhmm")
+      .eq("agent_id", user.id);
+    fermes = (f ?? []) as { jour: string; hhmm: string }[];
   }
 
   return (
@@ -60,6 +68,23 @@ export default async function Reservation() {
         </p>
         <JoursSelector initial={jours} />
       </section>
+
+      {/* Disponibilités */}
+      {jours.length > 0 && (
+        <section className="mt-6 rounded-xl border border-ligne bg-carte/40 p-6">
+          <p className="font-corps text-xs font-600 uppercase tracking-[0.2em] text-brique">
+            Mes disponibilités
+          </p>
+          <h2 className="mt-1 font-titre text-2xl font-600 text-encre">
+            Quand êtes-vous joignable&nbsp;?
+          </h2>
+          <p className="mb-5 mt-1 font-corps text-sm text-encreDoux">
+            Ces plages permettent aux réceptifs de <strong>vous</strong> proposer
+            un rendez-vous. (La prise de RDV par les réceptifs arrive à l'étape suivante.)
+          </p>
+          <Disponibilites joursAgent={jours} initialFermes={fermes} />
+        </section>
+      )}
 
       {/* Étape 2 */}
       <section className="mt-6">
