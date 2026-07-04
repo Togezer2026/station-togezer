@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { labelJour } from "@/lib/jours";
 import JoursSelector from "./JoursSelector";
+import Booking, { type Receptif } from "./Booking";
 
 export const dynamic = "force-dynamic";
 
@@ -26,6 +26,15 @@ export default async function Reservation() {
     .eq("agent_id", user.id)
     .order("jour");
   const jours = (joursRows ?? []).map((r) => r.jour as string);
+
+  let receptifs: Receptif[] = [];
+  if (jours.length > 0) {
+    const { data } = await supabase
+      .from("exposants")
+      .select("id, nom, logo_path, representant, pays_principal, presences(jour, formule)")
+      .order("nom");
+    receptifs = (data ?? []) as unknown as Receptif[];
+  }
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-12">
@@ -52,23 +61,21 @@ export default async function Reservation() {
       </section>
 
       {/* Étape 2 */}
-      <section className="mt-6 rounded-xl border border-ligne bg-carte p-6 shadow-carte">
+      <section className="mt-6">
         <p className="font-corps text-xs font-600 uppercase tracking-[0.2em] text-brique">
           Étape 2
         </p>
         <h2 className="mt-1 font-titre text-2xl font-600 text-encre">
-          Réserver mes créneaux
+          Réserver mes créneaux du matin
         </h2>
         {jours.length === 0 ? (
           <p className="mt-1 font-corps text-sm text-encreDoux">
             Choisissez d'abord vos jours ci-dessus.
           </p>
         ) : (
-          <p className="mt-1 font-corps text-sm text-encreDoux">
-            Vos jours : <strong className="text-encre">{jours.map(labelJour).join(", ")}</strong>.
-            La prise de créneaux (petits-déjeuners 20 min, après-midis 30 min,
-            déjeuners, présentations) arrive à la prochaine étape du développement.
-          </p>
+          <div className="mt-4">
+            <Booking receptifs={receptifs} joursAgent={jours} />
+          </div>
         )}
       </section>
     </main>
