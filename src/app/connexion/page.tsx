@@ -31,7 +31,13 @@ export default function ConnexionPage() {
       .from("profiles")
       .select("role")
       .single();
-    router.push(prof?.role === "admin" ? "/admin" : "/mon-espace");
+    const dest =
+      prof?.role === "admin"
+        ? "/admin"
+        : prof?.role === "receptif"
+          ? "/espace-receptif"
+          : "/mon-espace";
+    router.push(dest);
     router.refresh();
   }
 
