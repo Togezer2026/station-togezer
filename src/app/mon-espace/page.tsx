@@ -66,16 +66,19 @@ export default async function MonEspace() {
         </dl>
       </section>
 
-      <div className="mt-6 flex gap-4">
+      <div className="mt-6 flex flex-wrap gap-3">
+        <Link
+          href="/reservation"
+          className="rounded-full bg-brique px-6 py-2.5 font-corps font-600 text-creme hover:bg-briqueFonce"
+        >
+          Prendre mes rendez-vous
+        </Link>
         <Link
           href="/annuaire"
-          className="rounded-lg bg-brique px-5 py-2.5 font-medium text-white hover:brightness-110"
+          className="rounded-full border border-encre/20 px-6 py-2.5 font-corps font-500 text-encre hover:bg-encre/5"
         >
           Voir les réceptifs
         </Link>
-        <span className="self-center text-sm text-encre/40">
-          Le choix des jours et la prise de rendez-vous arrivent à l'étape suivante.
-        </span>
       </div>
     </main>
   );

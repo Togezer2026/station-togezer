@@ -9,6 +9,7 @@ export default function InscriptionPage() {
   const router = useRouter();
   const [form, setForm] = useState({
     agence: "",
+    ville: "",
     prenom: "",
     nom: "",
     email: "",
@@ -38,6 +39,7 @@ export default function InscriptionPage() {
         emailRedirectTo: `${window.location.origin}/auth/confirm?next=/mon-espace`,
         data: {
           agence: form.agence.trim(),
+          ville: form.ville.trim(),
           prenom: form.prenom.trim(),
           nom: form.nom.trim(),
           telephone: form.telephone.trim(),
@@ -85,11 +87,12 @@ export default function InscriptionPage() {
 
       <form onSubmit={submit} className="mt-8 space-y-4">
         <Champ name="agence" label="Nom de l'agence" value={form.agence} onChange={set("agence")} required />
+        <Champ name="ville" label="Ville de l'agence" value={form.ville} onChange={set("ville")} required />
         <div className="grid grid-cols-2 gap-4">
           <Champ name="prenom" label="Prénom" value={form.prenom} onChange={set("prenom")} required />
           <Champ name="nom" label="Nom" value={form.nom} onChange={set("nom")} required />
         </div>
-        <Champ name="email" label="E-mail" type="email" value={form.email} onChange={set("email")} required />
+        <Champ name="email" label="E-mail professionnel" type="email" value={form.email} onChange={set("email")} required />
         <Champ name="telephone" label="Téléphone (facultatif)" value={form.telephone} onChange={set("telephone")} />
         <Champ
           name="password"

@@ -6,6 +6,7 @@ export const dynamic = "force-dynamic";
 type Agent = {
   id: string;
   agence: string;
+  ville: string | null;
   prenom: string;
   nom: string;
   email: string;
@@ -13,11 +14,21 @@ type Agent = {
   created_at: string;
 };
 
+function dateFr(iso: string) {
+  return new Date(iso).toLocaleString("fr-FR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
 export default async function AdminAgents() {
   const { supabase } = await requireAdmin();
   const { data: agents } = await supabase
     .from("agents")
-    .select("id, agence, prenom, nom, email, telephone, created_at")
+    .select("id, agence, ville, prenom, nom, email, telephone, created_at")
     .order("created_at", { ascending: false });
   const { data: jours } = await supabase.from("agent_jours").select("agent_id, jour");
 
@@ -40,20 +51,24 @@ export default async function AdminAgents() {
             <thead className="border-b border-ligne text-xs uppercase tracking-wide text-encreDoux">
               <tr>
                 <th className="px-4 py-3">Agence</th>
+                <th className="px-4 py-3">Ville</th>
                 <th className="px-4 py-3">Contact</th>
                 <th className="px-4 py-3">E-mail</th>
                 <th className="px-4 py-3">Téléphone</th>
                 <th className="px-4 py-3">Jours</th>
+                <th className="px-4 py-3">Inscrit le</th>
               </tr>
             </thead>
             <tbody>
               {rows.map((a) => (
                 <tr key={a.id} className="border-b border-ligne/60 last:border-0">
                   <td className="px-4 py-3 font-600 text-encre">{a.agence}</td>
+                  <td className="px-4 py-3 text-encreDoux">{a.ville ?? "—"}</td>
                   <td className="px-4 py-3 text-encreDoux">{a.prenom} {a.nom}</td>
                   <td className="px-4 py-3 text-encreDoux">{a.email}</td>
                   <td className="px-4 py-3 text-encreDoux">{a.telephone ?? "—"}</td>
                   <td className="px-4 py-3 text-encreDoux">{joursByAgent(a.id).join(", ") || "—"}</td>
+                  <td className="px-4 py-3 text-encreDoux">{dateFr(a.created_at)}</td>
                 </tr>
               ))}
             </tbody>
