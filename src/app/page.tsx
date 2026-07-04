@@ -41,12 +41,20 @@ export default function Home() {
       {/* En-tête — logo en haut à gauche */}
       <header className="mx-auto flex max-w-5xl items-center justify-between px-6 pt-8">
         <Wordmark className="h-auto w-[175px]" />
-        <Link
-          href="/annuaire"
-          className="hidden font-corps text-sm text-encreDoux underline-offset-4 hover:text-encre hover:underline sm:inline"
-        >
-          Les réceptifs
-        </Link>
+        <div className="flex items-center gap-2 sm:gap-4">
+          <Link
+            href="/annuaire"
+            className="hidden font-corps text-sm text-encreDoux underline-offset-4 hover:text-encre hover:underline sm:inline"
+          >
+            Les réceptifs
+          </Link>
+          <Link
+            href="/connexion"
+            className="rounded-full border border-encre/25 px-5 py-2 font-corps text-sm font-500 text-encre transition hover:bg-encre/5"
+          >
+            Se connecter
+          </Link>
+        </div>
       </header>
 
       {/* Hero */}
