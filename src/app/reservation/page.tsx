@@ -15,7 +15,7 @@ export default async function Reservation() {
 
   const { data: agent } = await supabase
     .from("agents")
-    .select("prenom")
+    .select("prenom, engagement_at")
     .eq("id", user.id)
     .single();
   if (!agent) redirect("/mon-espace");
@@ -31,7 +31,9 @@ export default async function Reservation() {
   if (jours.length > 0) {
     const { data } = await supabase
       .from("exposants")
-      .select("id, nom, logo_path, representant, pays_principal, presences(jour, formule)")
+      .select(
+        "id, nom, logo_path, representant, pays_principal, continent_principal, exposant_destinations(pays, continent), presences(jour, formule)",
+      )
       .order("nom");
     receptifs = (data ?? []) as unknown as Receptif[];
   }
@@ -73,7 +75,7 @@ export default async function Reservation() {
           </p>
         ) : (
           <div className="mt-4">
-            <Booking receptifs={receptifs} joursAgent={jours} />
+            <Booking receptifs={receptifs} joursAgent={jours} engagementAt={agent.engagement_at as string | null} />
           </div>
         )}
       </section>

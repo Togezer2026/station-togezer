@@ -12,6 +12,8 @@ export type Receptif = {
   logo_path: string | null;
   representant: string | null;
   pays_principal: string;
+  continent_principal: string;
+  exposant_destinations: { pays: string; continent: string }[];
   presences: Presence[];
 };
 type Engagement = {
@@ -30,9 +32,11 @@ const BREAKFAST = new Set(["petits_dej", "biz_biz", "journee"]);
 export default function Booking({
   receptifs,
   joursAgent,
+  engagementAt,
 }: {
   receptifs: Receptif[];
   joursAgent: string[];
+  engagementAt: string | null;
 }) {
   const supabase = createClient();
   const [sel, setSel] = useState<string | null>(null);
@@ -40,6 +44,10 @@ export default function Booking({
   const [occ, setOcc] = useState<Record<string, Set<string>>>({}); // `${expo}_${jour}` -> set de "YYYY-MM-DD HH:MM"
   const [busy, setBusy] = useState<string | null>(null);
   const [erreur, setErreur] = useState<string | null>(null);
+  const [continent, setContinent] = useState("");
+  const [pays, setPays] = useState("");
+  const [engage, setEngage] = useState<string | null>(engagementAt);
+  const [coche, setCoche] = useState(false);
 
   const loadMes = useCallback(async () => {
     const { data } = await supabase.rpc("mes_engagements");
@@ -64,10 +72,33 @@ export default function Booking({
     loadMes();
   }, [loadMes]);
 
-  // Réceptifs réservables : présents sur un jour de l'agent avec petit-déjeuner
-  const bookables = receptifs
-    .filter((r) => r.presences.some((p) => joursAgent.includes(p.jour) && BREAKFAST.has(p.formule)))
+  // Toutes les destinations d'un réceptif (principale + secondaires)
+  const destinations = (r: Receptif) => [
+    { pays: r.pays_principal, continent: r.continent_principal },
+    ...r.exposant_destinations,
+  ];
+
+  // Réceptifs présents sur un jour de l'agent (base filtrable)
+  const surMesJours = receptifs.filter((r) =>
+    r.presences.some((p) => joursAgent.includes(p.jour) && BREAKFAST.has(p.formule)),
+  );
+  const continents = [...new Set(surMesJours.flatMap((r) => destinations(r).map((d) => d.continent)))].sort();
+  const paysList = [...new Set(surMesJours.flatMap((r) => destinations(r).map((d) => d.pays)))]
+    .filter((p) => !continent || surMesJours.some((r) => destinations(r).some((d) => d.pays === p && d.continent === continent)))
+    .sort();
+  const bookables = surMesJours
+    .filter((r) => {
+      const ds = destinations(r);
+      if (continent && !ds.some((d) => d.continent === continent)) return false;
+      if (pays && !ds.some((d) => d.pays === pays)) return false;
+      return true;
+    })
     .sort((a, b) => a.nom.localeCompare(b.nom));
+
+  async function validerEngagement() {
+    const { error } = await supabase.rpc("valider_engagement");
+    if (!error) setEngage(new Date().toISOString());
+  }
 
   const selReceptif = bookables.find((r) => r.id === sel) ?? null;
   const joursDuReceptif = selReceptif
@@ -161,25 +192,50 @@ export default function Booking({
     <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
       {/* Liste des réceptifs réservables */}
       <div className="rounded-xl border border-ligne bg-carte p-3 shadow-carte">
-        <p className="px-2 py-1 font-corps text-xs font-600 uppercase tracking-wide text-encreDoux">
-          Réceptifs de vos jours ({bookables.length})
+        <p className="px-1 pb-2 font-corps text-xs text-encreDoux">
+          Seuls les réceptifs présents sur <strong className="text-encre">vos jours</strong> s'affichent.
         </p>
-        <div className="mt-1 max-h-[520px] space-y-1 overflow-y-auto">
-          {bookables.map((r) => (
-            <button
-              key={r.id}
-              onClick={() => setSel(r.id)}
-              className={`flex w-full items-center gap-2 rounded-lg px-2 py-2 text-left font-corps text-sm transition ${
-                sel === r.id ? "bg-brique text-creme" : "text-encre hover:bg-creme"
-              }`}
-            >
-              {r.logo_path && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={r.logo_path} alt="" className="h-7 w-7 rounded" />
-              )}
-              <span className="truncate">{r.nom}</span>
-            </button>
-          ))}
+        <div className="flex gap-2">
+          <select value={continent} onChange={(e) => { setContinent(e.target.value); setPays(""); }}
+            className="min-w-0 flex-1 rounded-lg border border-encre/20 bg-white px-2 py-1.5 font-corps text-xs">
+            <option value="">Tous continents</option>
+            {continents.map((c) => <option key={c} value={c}>{c}</option>)}
+          </select>
+          <select value={pays} onChange={(e) => setPays(e.target.value)}
+            className="min-w-0 flex-1 rounded-lg border border-encre/20 bg-white px-2 py-1.5 font-corps text-xs">
+            <option value="">Tous pays</option>
+            {paysList.map((p) => <option key={p} value={p}>{p}</option>)}
+          </select>
+        </div>
+        <p className="px-1 pt-2 font-corps text-xs font-600 uppercase tracking-wide text-encreDoux">
+          {bookables.length} réceptif{bookables.length > 1 ? "s" : ""}
+        </p>
+        <div className="mt-1 max-h-[560px] space-y-1 overflow-y-auto">
+          {bookables.map((r) => {
+            const sec = r.exposant_destinations.map((d) => d.pays);
+            const sousTitre = [r.pays_principal, ...sec].join(", ");
+            const on = sel === r.id;
+            return (
+              <button
+                key={r.id}
+                onClick={() => setSel(r.id)}
+                className={`flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left transition ${
+                  on ? "bg-brique text-creme" : "text-encre hover:bg-creme"
+                }`}
+              >
+                {r.logo_path && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={r.logo_path} alt="" className="h-9 w-9 shrink-0 rounded-lg" />
+                )}
+                <span className="min-w-0">
+                  <span className="block truncate font-corps text-sm font-600">{r.nom}</span>
+                  <span className={`block truncate font-corps text-xs ${on ? "text-creme/80" : "text-encreDoux"}`}>
+                    {sousTitre}
+                  </span>
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -263,6 +319,44 @@ export default function Booking({
                 </ul>
               </div>
             ))}
+          </div>
+
+          {/* Récapitulatif & engagement */}
+          <div className="mt-4 rounded-xl border-2 border-double border-brique/50 bg-carte p-5 shadow-carte">
+            {engage ? (
+              <p className="font-corps text-sm text-encre">
+                ✓ <strong>Programme confirmé.</strong> Merci&nbsp;! Pensez à revenir
+                l'ajuster ici si votre agenda change — annuler un créneau libère la
+                place pour un autre agent.
+              </p>
+            ) : (
+              <>
+                <p className="font-titre text-lg font-600 text-encre">
+                  Un dernier geste, important
+                </p>
+                <label className="mt-3 flex cursor-pointer items-start gap-3 font-corps text-sm text-encre">
+                  <input
+                    type="checkbox"
+                    checked={coche}
+                    onChange={(e) => setCoche(e.target.checked)}
+                    className="mt-1 h-4 w-4 accent-brique"
+                  />
+                  <span>
+                    Je m'engage à honorer mes rendez-vous, et à revenir les{" "}
+                    <strong>annuler ou modifier</strong> sans tarder si un changement
+                    dans mon agenda m'en empêche — afin de libérer le créneau pour un
+                    confrère.
+                  </span>
+                </label>
+                <button
+                  onClick={validerEngagement}
+                  disabled={!coche}
+                  className="mt-4 rounded-full bg-brique px-7 py-2.5 font-corps font-600 text-creme transition hover:bg-briqueFonce disabled:opacity-40"
+                >
+                  Je valide mon programme
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}
