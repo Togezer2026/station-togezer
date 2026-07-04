@@ -27,7 +27,7 @@ on conflict (jour) do update set capacite = excluded.capacite;
 
 -- Serengeti Big Cats Safaris
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'serengeti-big-cats-safaris', 'Serengeti Big Cats Safaris', 'TANZANIE', 'Afrique', 'TANZANIE', '/logos/serengeti-big-cats-safaris.svg', 'martin@togezer.travel', 'CECILE', '+255767070880', 2, 'J''accompagnerai Mathilde', 'Mathilde Quéva');
+  values (gen_random_uuid(), 'serengeti-big-cats-safaris', 'Serengeti Big Cats Safaris', 'Tanzanie', 'Afrique', 'Tanzanie', '/logos/serengeti-big-cats-safaris.svg', 'martin@togezer.travel', 'CECILE', '+255767070880', 2, 'J''accompagnerai Mathilde', 'Mathilde Quéva');
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'serengeti-big-cats-safaris'), '2026-09-15', 'petits_dej');
 insert into presences (exposant_id, jour, formule)
@@ -35,7 +35,7 @@ insert into presences (exposant_id, jour, formule)
 
 -- African Eagle Namibie
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'african-eagle-namibie', 'African Eagle Namibie', 'NAMIBIE', 'Afrique', 'NAMIBIE', '/logos/african-eagle-namibie.svg', 'martin@togezer.travel', 'CHRISTIAN MUTONJI', '+264813268386', 1, null, null);
+  values (gen_random_uuid(), 'african-eagle-namibie', 'African Eagle Namibie', 'Namibie', 'Afrique', 'Namibie', '/logos/african-eagle-namibie.svg', 'martin@togezer.travel', 'CHRISTIAN MUTONJI', '+264813268386', 1, null, null);
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'african-eagle-namibie'), '2026-09-15', 'petits_dej');
 insert into presences (exposant_id, jour, formule)
@@ -43,9 +43,9 @@ insert into presences (exposant_id, jour, formule)
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'african-eagle-namibie'), '2026-09-17', 'petits_dej');
 
--- Algerie Tours
+-- Algérie Tours
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'algerie-tours', 'Algerie Tours', 'ALGERIE', 'Afrique', 'ALGERIE', '/logos/algerie-tours.svg', 'martin@togezer.travel', 'Amine LAGOUNE', '+33615325916', 1, 'Le tarif est bien pour les 03 Matinées ?', null);
+  values (gen_random_uuid(), 'algerie-tours', 'Algérie Tours', 'Algérie', 'Afrique', 'Algérie', '/logos/algerie-tours.svg', 'martin@togezer.travel', 'Amine LAGOUNE', '+33615325916', 1, 'Le tarif est bien pour les 03 Matinées ?', null);
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'algerie-tours'), '2026-09-15', 'petits_dej');
 insert into presences (exposant_id, jour, formule)
@@ -53,9 +53,9 @@ insert into presences (exposant_id, jour, formule)
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'algerie-tours'), '2026-09-17', 'petits_dej');
 
--- archipel contact
+-- Archipel Contact
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'archipel-contact', 'archipel contact', 'indonésie', 'Asie', 'indonésie', '/logos/archipel-contact.svg', 'martin@togezer.travel', 'sylvie ponte', '+33659884894', 2, null, null);
+  values (gen_random_uuid(), 'archipel-contact', 'Archipel Contact', 'Indonésie', 'Asie', 'Indonésie', '/logos/archipel-contact.svg', 'martin@togezer.travel', 'sylvie ponte', '+33659884894', 2, null, null);
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'archipel-contact'), '2026-09-15', 'petits_dej');
 insert into presences (exposant_id, jour, formule)
@@ -73,11 +73,13 @@ insert into presences (exposant_id, jour, formule)
 
 -- Atypique Voyages
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'atypique-voyages', 'Atypique Voyages', 'Sri Lanka', 'Asie', 'Sri Lanka, Maldives, Vietnam et Philippines', '/logos/atypique-voyages.svg', 'martin@togezer.travel', 'Chamika Kathri Arachchige', '+94766451002', 2, null, null);
+  values (gen_random_uuid(), 'atypique-voyages', 'Atypique Voyages', 'Sri Lanka', 'Asie', 'Sri Lanka, Maldives, Vietnam, Philippines', '/logos/atypique-voyages.svg', 'martin@togezer.travel', 'Chamika Kathri Arachchige', '+94766451002', 2, null, null);
 insert into exposant_destinations (exposant_id, pays, continent)
   values ((select id from exposants where slug = 'atypique-voyages'), 'Maldives', 'Asie');
 insert into exposant_destinations (exposant_id, pays, continent)
-  values ((select id from exposants where slug = 'atypique-voyages'), 'Vietnam et Philippines', 'Asie');
+  values ((select id from exposants where slug = 'atypique-voyages'), 'Vietnam', 'Asie');
+insert into exposant_destinations (exposant_id, pays, continent)
+  values ((select id from exposants where slug = 'atypique-voyages'), 'Philippines', 'Asie');
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'atypique-voyages'), '2026-09-15', 'petits_dej');
 insert into presences (exposant_id, jour, formule)
@@ -97,7 +99,9 @@ insert into presences (exposant_id, jour, formule)
 
 -- Brightside Travel LTD
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'brightside-travel-ltd', 'Brightside Travel LTD', 'Grande Bretagne et Irlande', 'Europe', 'Grande Bretagne et Irlande', '/logos/brightside-travel-ltd.svg', 'martin@togezer.travel', 'Loic Acosta', '+447447013109', 2, null, null);
+  values (gen_random_uuid(), 'brightside-travel-ltd', 'Brightside Travel LTD', 'Grande-Bretagne', 'Europe', 'Grande-Bretagne, Irlande', '/logos/brightside-travel-ltd.svg', 'martin@togezer.travel', 'Loic Acosta', '+447447013109', 2, null, null);
+insert into exposant_destinations (exposant_id, pays, continent)
+  values ((select id from exposants where slug = 'brightside-travel-ltd'), 'Irlande', 'Europe');
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'brightside-travel-ltd'), '2026-09-15', 'petits_dej');
 insert into presences (exposant_id, jour, formule)
@@ -105,15 +109,19 @@ insert into presences (exposant_id, jour, formule)
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'brightside-travel-ltd'), '2026-09-17', 'petits_dej');
 
--- Contact Voyages SÉNÉGal
+-- Contact Voyages Sénégal
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'contact-voyages-senegal', 'Contact Voyages SÉNÉGal', 'Sénégal', 'Afrique', 'Sénégal', '/logos/contact-voyages-senegal.svg', 'martin@togezer.travel', 'Abou BA', '00221766836438', 1, null, null);
+  values (gen_random_uuid(), 'contact-voyages-senegal', 'Contact Voyages Sénégal', 'Sénégal', 'Afrique', 'Sénégal', '/logos/contact-voyages-senegal.svg', 'martin@togezer.travel', 'Abou BA', '00221766836438', 1, null, null);
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'contact-voyages-senegal'), '2026-09-17', 'biz_biz');
 
--- elite american voyages
+-- Elite American Voyages
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'elite-american-voyages', 'elite american voyages', 'USA CANADA BAHAMAS', 'Amériques', 'USA CANADA BAHAMAS', '/logos/elite-american-voyages.svg', 'martin@togezer.travel', 'JOHAN MIQUEL', '+33669064338', 1, 'Tara, notre cheffe de production, sera présente lors des petit-déj.', null);
+  values (gen_random_uuid(), 'elite-american-voyages', 'Elite American Voyages', 'États-Unis', 'Amériques', 'États-Unis, Canada, Bahamas', '/logos/elite-american-voyages.svg', 'martin@togezer.travel', 'JOHAN MIQUEL', '+33669064338', 1, 'Tara, notre cheffe de production, sera présente lors des petit-déj.', null);
+insert into exposant_destinations (exposant_id, pays, continent)
+  values ((select id from exposants where slug = 'elite-american-voyages'), 'Canada', 'Amériques');
+insert into exposant_destinations (exposant_id, pays, continent)
+  values ((select id from exposants where slug = 'elite-american-voyages'), 'Bahamas', 'Amériques');
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'elite-american-voyages'), '2026-09-15', 'petits_dej');
 insert into presences (exposant_id, jour, formule)
@@ -121,7 +129,7 @@ insert into presences (exposant_id, jour, formule)
 
 -- Escapades Madagascar
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'escapades-madagascar', 'Escapades Madagascar', 'MADAGASCAR', 'Afrique', 'MADAGASCAR', '/logos/escapades-madagascar.svg', 'martin@togezer.travel', 'Mbola RASOANAIVO', '+261320512626', 2, null, null);
+  values (gen_random_uuid(), 'escapades-madagascar', 'Escapades Madagascar', 'Madagascar', 'Afrique', 'Madagascar', '/logos/escapades-madagascar.svg', 'martin@togezer.travel', 'Mbola RASOANAIVO', '+261320512626', 2, null, null);
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'escapades-madagascar'), '2026-09-15', 'petits_dej');
 insert into presences (exposant_id, jour, formule)
@@ -131,7 +139,7 @@ insert into presences (exposant_id, jour, formule)
 
 -- Evasion Tropicale
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'evasion-tropicale', 'Evasion Tropicale', 'les Philippines', 'Asie', 'les Philippines', '/logos/evasion-tropicale.svg', 'martin@togezer.travel', 'Kevin Labbe', '+639291387468', 1, null, null);
+  values (gen_random_uuid(), 'evasion-tropicale', 'Evasion Tropicale', 'Philippines', 'Asie', 'Philippines', '/logos/evasion-tropicale.svg', 'martin@togezer.travel', 'Kevin Labbe', '+639291387468', 1, null, null);
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'evasion-tropicale'), '2026-09-17', 'petits_dej');
 
@@ -159,7 +167,7 @@ insert into presences (exposant_id, jour, formule)
 
 -- MozSensations
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'mozsensations', 'MozSensations', 'Mozambique', 'Afrique', 'Moz Zam Zim', '/logos/mozsensations.svg', 'martin@togezer.travel', 'Laurence Caille', '258848344738', 1, null, null);
+  values (gen_random_uuid(), 'mozsensations', 'MozSensations', 'Mozambique', 'Afrique', 'Mozambique, Zambie, Zimbabwe', '/logos/mozsensations.svg', 'martin@togezer.travel', 'Laurence Caille', '258848344738', 1, null, null);
 insert into exposant_destinations (exposant_id, pays, continent)
   values ((select id from exposants where slug = 'mozsensations'), 'Zambie', 'Afrique');
 insert into exposant_destinations (exposant_id, pays, continent)
@@ -169,7 +177,7 @@ insert into presences (exposant_id, jour, formule)
 
 -- Phima Voyages
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'phima-voyages', 'Phima Voyages', 'Nord du Pérou', 'Amériques', 'Nord du Pérou', '/logos/phima-voyages.svg', 'martin@togezer.travel', 'Martina Capel', '(068) 037-0580', 1, null, null);
+  values (gen_random_uuid(), 'phima-voyages', 'Phima Voyages', 'Pérou', 'Amériques', 'Pérou', '/logos/phima-voyages.svg', 'martin@togezer.travel', 'Martina Capel', '(068) 037-0580', 1, null, null);
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'phima-voyages'), '2026-09-15', 'petits_dej');
 insert into presences (exposant_id, jour, formule)
@@ -177,7 +185,7 @@ insert into presences (exposant_id, jour, formule)
 
 -- Pura Vida Cabo Verde
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'pura-vida-cabo-verde', 'Pura Vida Cabo Verde', 'Cap Vert', 'Afrique', 'Cap Vert', '/logos/pura-vida-cabo-verde.svg', 'martin@togezer.travel', 'Stan Brun', '33687852280', 1, null, null);
+  values (gen_random_uuid(), 'pura-vida-cabo-verde', 'Pura Vida Cabo Verde', 'Cap-Vert', 'Afrique', 'Cap-Vert', '/logos/pura-vida-cabo-verde.svg', 'martin@togezer.travel', 'Stan Brun', '33687852280', 1, null, null);
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'pura-vida-cabo-verde'), '2026-09-16', 'petits_dej');
 
@@ -189,7 +197,17 @@ insert into presences (exposant_id, jour, formule)
 
 -- Shanti Travel
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'shanti-travel', 'Shanti Travel', 'Inde Indo Japon SL Vietnam Philippines', 'Asie', 'Inde Indo Japon SL Vietnam Philippines', '/logos/shanti-travel.svg', 'martin@togezer.travel', 'Melissa', '(065) 277-8609', 2, null, null);
+  values (gen_random_uuid(), 'shanti-travel', 'Shanti Travel', 'Inde', 'Asie', 'Inde, Indonésie, Japon, Sri Lanka, Vietnam, Philippines', '/logos/shanti-travel.svg', 'martin@togezer.travel', 'Melissa', '(065) 277-8609', 2, null, null);
+insert into exposant_destinations (exposant_id, pays, continent)
+  values ((select id from exposants where slug = 'shanti-travel'), 'Indonésie', 'Asie');
+insert into exposant_destinations (exposant_id, pays, continent)
+  values ((select id from exposants where slug = 'shanti-travel'), 'Japon', 'Asie');
+insert into exposant_destinations (exposant_id, pays, continent)
+  values ((select id from exposants where slug = 'shanti-travel'), 'Sri Lanka', 'Asie');
+insert into exposant_destinations (exposant_id, pays, continent)
+  values ((select id from exposants where slug = 'shanti-travel'), 'Vietnam', 'Asie');
+insert into exposant_destinations (exposant_id, pays, continent)
+  values ((select id from exposants where slug = 'shanti-travel'), 'Philippines', 'Asie');
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'shanti-travel'), '2026-09-15', 'petits_dej');
 insert into presences (exposant_id, jour, formule)
@@ -199,7 +217,9 @@ insert into presences (exposant_id, jour, formule)
 
 -- Sikiliza
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'sikiliza', 'Sikiliza', 'ZIMBABWE BOTSWANA', 'Afrique', 'ZIMBABWE BOTSWANA', '/logos/sikiliza.svg', 'martin@togezer.travel', 'Nathalie CALONNE', '+263772261831', 1, null, null);
+  values (gen_random_uuid(), 'sikiliza', 'Sikiliza', 'Zimbabwe', 'Afrique', 'Zimbabwe, Botswana', '/logos/sikiliza.svg', 'martin@togezer.travel', 'Nathalie CALONNE', '+263772261831', 1, null, null);
+insert into exposant_destinations (exposant_id, pays, continent)
+  values ((select id from exposants where slug = 'sikiliza'), 'Botswana', 'Afrique');
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'sikiliza'), '2026-09-15', 'petits_dej');
 insert into presences (exposant_id, jour, formule)
@@ -215,9 +235,9 @@ insert into presences (exposant_id, jour, formule)
 
 -- Tanganyika Expeditions
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'tanganyika-expeditions', 'Tanganyika Expeditions', 'TANZANIE', 'Afrique', 'TANZANIE/ZANZIBAR', '/logos/tanganyika-expeditions.svg', 'martin@togezer.travel', 'Laurent Gavache', '+33619398800', 1, null, null);
+  values (gen_random_uuid(), 'tanganyika-expeditions', 'Tanganyika Expeditions', 'Tanzanie', 'Afrique', 'Tanzanie, Zanzibar', '/logos/tanganyika-expeditions.svg', 'martin@togezer.travel', 'Laurent Gavache', '+33619398800', 1, null, null);
 insert into exposant_destinations (exposant_id, pays, continent)
-  values ((select id from exposants where slug = 'tanganyika-expeditions'), 'ZANZIBAR', 'Afrique');
+  values ((select id from exposants where slug = 'tanganyika-expeditions'), 'Zanzibar', 'Afrique');
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'tanganyika-expeditions'), '2026-09-15', 'petits_dej');
 insert into presences (exposant_id, jour, formule)
@@ -235,7 +255,7 @@ insert into presences (exposant_id, jour, formule)
 
 -- Terra Balka
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'terra-balka', 'Terra Balka', 'Balkans', 'Europe', 'Balkans (Croatie, Slovénie, Monténégro, Bosnie Herzégovine, Albanie, Macédoine, Kosovo)', '/logos/terra-balka.svg', 'martin@togezer.travel', 'Hugo DIMOFF', '+33 6 45 56 83 12', 2, 'Hugo et John seront présents.', null);
+  values (gen_random_uuid(), 'terra-balka', 'Terra Balka', 'Balkans', 'Europe', 'Balkans, Croatie, Slovénie, Monténégro, Bosnie-Herzégovine, Albanie, Macédoine, Kosovo', '/logos/terra-balka.svg', 'martin@togezer.travel', 'Hugo DIMOFF', '+33 6 45 56 83 12', 2, 'Hugo et John seront présents.', null);
 insert into exposant_destinations (exposant_id, pays, continent)
   values ((select id from exposants where slug = 'terra-balka'), 'Croatie', 'Europe');
 insert into exposant_destinations (exposant_id, pays, continent)
@@ -243,7 +263,7 @@ insert into exposant_destinations (exposant_id, pays, continent)
 insert into exposant_destinations (exposant_id, pays, continent)
   values ((select id from exposants where slug = 'terra-balka'), 'Monténégro', 'Europe');
 insert into exposant_destinations (exposant_id, pays, continent)
-  values ((select id from exposants where slug = 'terra-balka'), 'Bosnie Herzégovine', 'Europe');
+  values ((select id from exposants where slug = 'terra-balka'), 'Bosnie-Herzégovine', 'Europe');
 insert into exposant_destinations (exposant_id, pays, continent)
   values ((select id from exposants where slug = 'terra-balka'), 'Albanie', 'Europe');
 insert into exposant_destinations (exposant_id, pays, continent)
@@ -275,7 +295,7 @@ insert into presences (exposant_id, jour, formule)
 
 -- Terra Gaïa Altiplano
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'terra-gaia-altiplano', 'Terra Gaïa Altiplano', 'Argentine : Nord ouest Argentine & Altiplano', 'Amériques', 'Argentine : Nord ouest Argentine & Altiplano', '/logos/terra-gaia-altiplano.svg', 'martin@togezer.travel', 'antoine dekyvere', '+5493874872449', 1, 'c''est quoi la salle de conference ? different du bureau l''apres midi ?', null);
+  values (gen_random_uuid(), 'terra-gaia-altiplano', 'Terra Gaïa Altiplano', 'Argentine', 'Amériques', 'Argentine', '/logos/terra-gaia-altiplano.svg', 'martin@togezer.travel', 'antoine dekyvere', '+5493874872449', 1, 'c''est quoi la salle de conference ? different du bureau l''apres midi ?', null);
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'terra-gaia-altiplano'), '2026-09-15', 'journee');
 insert into presences (exposant_id, jour, formule)
@@ -295,7 +315,7 @@ insert into presences (exposant_id, jour, formule)
 
 -- Terra Gaia Bolivia
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'terra-gaia-bolivia', 'Terra Gaia Bolivia', 'La Bolivie', 'Amériques', 'La Bolivie', '/logos/terra-gaia-bolivia.svg', 'martin@togezer.travel', 'Antoine Mayer', '+33 6 95 18 14 18', 1, null, null);
+  values (gen_random_uuid(), 'terra-gaia-bolivia', 'Terra Gaia Bolivia', 'Bolivie', 'Amériques', 'Bolivie', '/logos/terra-gaia-bolivia.svg', 'martin@togezer.travel', 'Antoine Mayer', '+33 6 95 18 14 18', 1, null, null);
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'terra-gaia-bolivia'), '2026-09-15', 'biz_biz');
 insert into presences (exposant_id, jour, formule)
@@ -315,7 +335,9 @@ insert into presences (exposant_id, jour, formule)
 
 -- Terra Gaia Ecuador & Galápagos
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'terra-gaia-ecuador-galapagos', 'Terra Gaia Ecuador & Galápagos', 'Équateur et Galapagos', 'Amériques', 'Équateur et Galapagos', '/logos/terra-gaia-ecuador-galapagos.svg', 'martin@togezer.travel', 'Nicolas Goronflot', '+593987159732', 2, null, null);
+  values (gen_random_uuid(), 'terra-gaia-ecuador-galapagos', 'Terra Gaia Ecuador & Galápagos', 'Équateur', 'Amériques', 'Équateur, Galápagos', '/logos/terra-gaia-ecuador-galapagos.svg', 'martin@togezer.travel', 'Nicolas Goronflot', '+593987159732', 2, null, null);
+insert into exposant_destinations (exposant_id, pays, continent)
+  values ((select id from exposants where slug = 'terra-gaia-ecuador-galapagos'), 'Galápagos', 'Amériques');
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'terra-gaia-ecuador-galapagos'), '2026-09-15', 'journee');
 insert into presences (exposant_id, jour, formule)
@@ -325,7 +347,9 @@ insert into presences (exposant_id, jour, formule)
 
 -- Terra Guatemala
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'terra-guatemala', 'Terra Guatemala', 'Guatemala Belize', 'Amériques', 'Guatemala Belize', '/logos/terra-guatemala.svg', 'martin@togezer.travel', 'Tristan Reger', '(502) 3684 7687', 2, null, null);
+  values (gen_random_uuid(), 'terra-guatemala', 'Terra Guatemala', 'Guatemala', 'Amériques', 'Guatemala, Belize', '/logos/terra-guatemala.svg', 'martin@togezer.travel', 'Tristan Reger', '(502) 3684 7687', 2, null, null);
+insert into exposant_destinations (exposant_id, pays, continent)
+  values ((select id from exposants where slug = 'terra-guatemala'), 'Belize', 'Amériques');
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'terra-guatemala'), '2026-09-15', 'petits_dej');
 insert into presences (exposant_id, jour, formule)
@@ -333,15 +357,15 @@ insert into presences (exposant_id, jour, formule)
 
 -- Terra Maya
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'terra-maya', 'Terra Maya', 'MEXIQUE', 'Amériques', 'MEXIQUE', '/logos/terra-maya.svg', 'martin@togezer.travel', 'Adelind Chambrier', '(999) 366-7552', 2, null, null);
+  values (gen_random_uuid(), 'terra-maya', 'Terra Maya', 'Mexique', 'Amériques', 'Mexique', '/logos/terra-maya.svg', 'martin@togezer.travel', 'Adelind Chambrier', '(999) 366-7552', 2, null, null);
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'terra-maya'), '2026-09-15', 'petits_dej');
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'terra-maya'), '2026-09-16', 'petits_dej');
 
--- terra morocco
+-- Terra Morocco
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'terra-morocco', 'terra morocco', 'maroc', 'Afrique', 'maroc', '/logos/terra-morocco.svg', 'martin@togezer.travel', 'laura', '00212662343381', 2, null, null);
+  values (gen_random_uuid(), 'terra-morocco', 'Terra Morocco', 'Maroc', 'Afrique', 'Maroc', '/logos/terra-morocco.svg', 'martin@togezer.travel', 'laura', '00212662343381', 2, null, null);
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'terra-morocco'), '2026-09-15', 'petits_dej');
 insert into presences (exposant_id, jour, formule)
@@ -351,13 +375,13 @@ insert into presences (exposant_id, jour, formule)
 
 -- Terra Nicaragua
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'terra-nicaragua', 'Terra Nicaragua', 'NICARAGUA', 'Amériques', 'NICARAGUA', '/logos/terra-nicaragua.svg', 'martin@togezer.travel', 'Daphné de Vautibault', '+502 35897157', 1, null, null);
+  values (gen_random_uuid(), 'terra-nicaragua', 'Terra Nicaragua', 'Nicaragua', 'Amériques', 'Nicaragua', '/logos/terra-nicaragua.svg', 'martin@togezer.travel', 'Daphné de Vautibault', '+502 35897157', 1, null, null);
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'terra-nicaragua'), '2026-09-16', 'petits_dej');
 
 -- Terra Peru
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'terra-peru', 'Terra Peru', 'Peru', 'Amériques', 'Peru', '/logos/terra-peru.svg', 'martin@togezer.travel', 'Vicky Minaya', '+51 940203741', 1, null, null);
+  values (gen_random_uuid(), 'terra-peru', 'Terra Peru', 'Pérou', 'Amériques', 'Pérou', '/logos/terra-peru.svg', 'martin@togezer.travel', 'Vicky Minaya', '+51 940203741', 1, null, null);
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'terra-peru'), '2026-09-15', 'petits_dej');
 insert into presences (exposant_id, jour, formule)
@@ -365,9 +389,9 @@ insert into presences (exposant_id, jour, formule)
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'terra-peru'), '2026-09-17', 'petits_dej');
 
--- Tierra Latina Argentine / Brésil
+-- Tierra Latina
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'tierra-latina-argentine-bresil', 'Tierra Latina Argentine / Brésil', 'Argentine', 'Amériques', 'Argentine / Brésil / Mexique', '/logos/tierra-latina-argentine-bresil.svg', 'martin@togezer.travel', 'Chloé Proust', '+33628229162', 2, null, null);
+  values (gen_random_uuid(), 'tierra-latina-argentine-bresil', 'Tierra Latina', 'Argentine', 'Amériques', 'Argentine, Brésil, Mexique', '/logos/tierra-latina-argentine-bresil.svg', 'martin@togezer.travel', 'Chloé Proust', '+33628229162', 2, null, null);
 insert into exposant_destinations (exposant_id, pays, continent)
   values ((select id from exposants where slug = 'tierra-latina-argentine-bresil'), 'Brésil', 'Amériques');
 insert into exposant_destinations (exposant_id, pays, continent)
@@ -387,7 +411,7 @@ insert into presences (exposant_id, jour, formule)
 
 -- Wakiy Tour
 insert into exposants (id, slug, nom, pays_principal, continent_principal, description, logo_path, email_contact, contact_nom, whatsapp, nb_personnes, notes, representant)
-  values (gen_random_uuid(), 'wakiy-tour', 'Wakiy Tour', 'Equateur', 'Amériques', 'Equateur', '/logos/wakiy-tour.svg', 'martin@togezer.travel', 'Olivia Baine', '0033648393511', 1, null, null);
+  values (gen_random_uuid(), 'wakiy-tour', 'Wakiy Tour', 'Équateur', 'Amériques', 'Équateur', '/logos/wakiy-tour.svg', 'martin@togezer.travel', 'Olivia Baine', '0033648393511', 1, null, null);
 insert into presences (exposant_id, jour, formule)
   values ((select id from exposants where slug = 'wakiy-tour'), '2026-09-15', 'journee');
 

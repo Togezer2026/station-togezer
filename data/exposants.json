@@ -3,10 +3,10 @@
     "slug": "serengeti-big-cats-safaris",
     "nom": "Serengeti Big Cats Safaris",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "TANZANIE",
+    "pays_principal": "Tanzanie",
     "continent_principal": "Afrique",
     "destinations_secondaires": [],
-    "description": "TANZANIE",
+    "description": "Tanzanie",
     "contact_nom": "CECILE",
     "whatsapp": "+255767070880",
     "nb_personnes": 2,
@@ -29,10 +29,10 @@
     "slug": "african-eagle-namibie",
     "nom": "African Eagle Namibie",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "NAMIBIE",
+    "pays_principal": "Namibie",
     "continent_principal": "Afrique",
     "destinations_secondaires": [],
-    "description": "NAMIBIE",
+    "description": "Namibie",
     "contact_nom": "CHRISTIAN MUTONJI",
     "whatsapp": "+264813268386",
     "nb_personnes": 1,
@@ -53,12 +53,12 @@
   },
   {
     "slug": "algerie-tours",
-    "nom": "Algerie Tours",
+    "nom": "Algérie Tours",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "ALGERIE",
+    "pays_principal": "Algérie",
     "continent_principal": "Afrique",
     "destinations_secondaires": [],
-    "description": "ALGERIE",
+    "description": "Algérie",
     "contact_nom": "Amine LAGOUNE",
     "whatsapp": "+33615325916",
     "nb_personnes": 1,
@@ -79,12 +79,12 @@
   },
   {
     "slug": "archipel-contact",
-    "nom": "archipel contact",
+    "nom": "Archipel Contact",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "indonésie",
+    "pays_principal": "Indonésie",
     "continent_principal": "Asie",
     "destinations_secondaires": [],
-    "description": "indonésie",
+    "description": "Indonésie",
     "contact_nom": "sylvie ponte",
     "whatsapp": "+33659884894",
     "nb_personnes": 2,
@@ -141,11 +141,15 @@
         "continent": "Asie"
       },
       {
-        "pays": "Vietnam et Philippines",
+        "pays": "Vietnam",
+        "continent": "Asie"
+      },
+      {
+        "pays": "Philippines",
         "continent": "Asie"
       }
     ],
-    "description": "Sri Lanka, Maldives, Vietnam et Philippines",
+    "description": "Sri Lanka, Maldives, Vietnam, Philippines",
     "contact_nom": "Chamika Kathri Arachchige",
     "whatsapp": "+94766451002",
     "nb_personnes": 2,
@@ -199,10 +203,15 @@
     "slug": "brightside-travel-ltd",
     "nom": "Brightside Travel LTD",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "Grande Bretagne et Irlande",
+    "pays_principal": "Grande-Bretagne",
     "continent_principal": "Europe",
-    "destinations_secondaires": [],
-    "description": "Grande Bretagne et Irlande",
+    "destinations_secondaires": [
+      {
+        "pays": "Irlande",
+        "continent": "Europe"
+      }
+    ],
+    "description": "Grande-Bretagne, Irlande",
     "contact_nom": "Loic Acosta",
     "whatsapp": "+447447013109",
     "nb_personnes": 2,
@@ -223,7 +232,7 @@
   },
   {
     "slug": "contact-voyages-senegal",
-    "nom": "Contact Voyages SÉNÉGal",
+    "nom": "Contact Voyages Sénégal",
     "email_contact": "martin@togezer.travel",
     "pays_principal": "Sénégal",
     "continent_principal": "Afrique",
@@ -249,12 +258,21 @@
   },
   {
     "slug": "elite-american-voyages",
-    "nom": "elite american voyages",
+    "nom": "Elite American Voyages",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "USA CANADA BAHAMAS",
+    "pays_principal": "États-Unis",
     "continent_principal": "Amériques",
-    "destinations_secondaires": [],
-    "description": "USA CANADA BAHAMAS",
+    "destinations_secondaires": [
+      {
+        "pays": "Canada",
+        "continent": "Amériques"
+      },
+      {
+        "pays": "Bahamas",
+        "continent": "Amériques"
+      }
+    ],
+    "description": "États-Unis, Canada, Bahamas",
     "contact_nom": "JOHAN MIQUEL",
     "whatsapp": "+33669064338",
     "nb_personnes": 1,
@@ -277,10 +295,10 @@
     "slug": "escapades-madagascar",
     "nom": "Escapades Madagascar",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "MADAGASCAR",
+    "pays_principal": "Madagascar",
     "continent_principal": "Afrique",
     "destinations_secondaires": [],
-    "description": "MADAGASCAR",
+    "description": "Madagascar",
     "contact_nom": "Mbola RASOANAIVO",
     "whatsapp": "+261320512626",
     "nb_personnes": 2,
@@ -303,10 +321,10 @@
     "slug": "evasion-tropicale",
     "nom": "Evasion Tropicale",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "les Philippines",
+    "pays_principal": "Philippines",
     "continent_principal": "Asie",
     "destinations_secondaires": [],
-    "description": "les Philippines",
+    "description": "Philippines",
     "contact_nom": "Kevin Labbe",
     "whatsapp": "+639291387468",
     "nb_personnes": 1,
@@ -411,7 +429,7 @@
         "continent": "Afrique"
       }
     ],
-    "description": "Moz Zam Zim",
+    "description": "Mozambique, Zambie, Zimbabwe",
     "contact_nom": "Laurence Caille",
     "whatsapp": "258848344738",
     "nb_personnes": 1,
@@ -434,10 +452,10 @@
     "slug": "phima-voyages",
     "nom": "Phima Voyages",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "Nord du Pérou",
+    "pays_principal": "Pérou",
     "continent_principal": "Amériques",
     "destinations_secondaires": [],
-    "description": "Nord du Pérou",
+    "description": "Pérou",
     "contact_nom": "Martina Capel",
     "whatsapp": "(068) 037-0580",
     "nb_personnes": 1,
@@ -460,10 +478,10 @@
     "slug": "pura-vida-cabo-verde",
     "nom": "Pura Vida Cabo Verde",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "Cap Vert",
+    "pays_principal": "Cap-Vert",
     "continent_principal": "Afrique",
     "destinations_secondaires": [],
-    "description": "Cap Vert",
+    "description": "Cap-Vert",
     "contact_nom": "Stan Brun",
     "whatsapp": "33687852280",
     "nb_personnes": 1,
@@ -512,10 +530,31 @@
     "slug": "shanti-travel",
     "nom": "Shanti Travel",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "Inde Indo Japon SL Vietnam Philippines",
+    "pays_principal": "Inde",
     "continent_principal": "Asie",
-    "destinations_secondaires": [],
-    "description": "Inde Indo Japon SL Vietnam Philippines",
+    "destinations_secondaires": [
+      {
+        "pays": "Indonésie",
+        "continent": "Asie"
+      },
+      {
+        "pays": "Japon",
+        "continent": "Asie"
+      },
+      {
+        "pays": "Sri Lanka",
+        "continent": "Asie"
+      },
+      {
+        "pays": "Vietnam",
+        "continent": "Asie"
+      },
+      {
+        "pays": "Philippines",
+        "continent": "Asie"
+      }
+    ],
+    "description": "Inde, Indonésie, Japon, Sri Lanka, Vietnam, Philippines",
     "contact_nom": "Melissa",
     "whatsapp": "(065) 277-8609",
     "nb_personnes": 2,
@@ -538,10 +577,15 @@
     "slug": "sikiliza",
     "nom": "Sikiliza",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "ZIMBABWE BOTSWANA",
+    "pays_principal": "Zimbabwe",
     "continent_principal": "Afrique",
-    "destinations_secondaires": [],
-    "description": "ZIMBABWE BOTSWANA",
+    "destinations_secondaires": [
+      {
+        "pays": "Botswana",
+        "continent": "Afrique"
+      }
+    ],
+    "description": "Zimbabwe, Botswana",
     "contact_nom": "Nathalie CALONNE",
     "whatsapp": "+263772261831",
     "nb_personnes": 1,
@@ -590,15 +634,15 @@
     "slug": "tanganyika-expeditions",
     "nom": "Tanganyika Expeditions",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "TANZANIE",
+    "pays_principal": "Tanzanie",
     "continent_principal": "Afrique",
     "destinations_secondaires": [
       {
-        "pays": "ZANZIBAR",
+        "pays": "Zanzibar",
         "continent": "Afrique"
       }
     ],
-    "description": "TANZANIE/ZANZIBAR",
+    "description": "Tanzanie, Zanzibar",
     "contact_nom": "Laurent Gavache",
     "whatsapp": "+33619398800",
     "nb_personnes": 1,
@@ -663,7 +707,7 @@
         "continent": "Europe"
       },
       {
-        "pays": "Bosnie Herzégovine",
+        "pays": "Bosnie-Herzégovine",
         "continent": "Europe"
       },
       {
@@ -679,7 +723,7 @@
         "continent": "Europe"
       }
     ],
-    "description": "Balkans (Croatie, Slovénie, Monténégro, Bosnie Herzégovine, Albanie, Macédoine, Kosovo)",
+    "description": "Balkans, Croatie, Slovénie, Monténégro, Bosnie-Herzégovine, Albanie, Macédoine, Kosovo",
     "contact_nom": "Hugo DIMOFF",
     "whatsapp": "+33 6 45 56 83 12",
     "nb_personnes": 2,
@@ -754,10 +798,10 @@
     "slug": "terra-gaia-altiplano",
     "nom": "Terra Gaïa Altiplano",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "Argentine : Nord ouest Argentine & Altiplano",
+    "pays_principal": "Argentine",
     "continent_principal": "Amériques",
     "destinations_secondaires": [],
-    "description": "Argentine : Nord ouest Argentine & Altiplano",
+    "description": "Argentine",
     "contact_nom": "antoine dekyvere",
     "whatsapp": "+5493874872449",
     "nb_personnes": 1,
@@ -806,10 +850,10 @@
     "slug": "terra-gaia-bolivia",
     "nom": "Terra Gaia Bolivia",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "La Bolivie",
+    "pays_principal": "Bolivie",
     "continent_principal": "Amériques",
     "destinations_secondaires": [],
-    "description": "La Bolivie",
+    "description": "Bolivie",
     "contact_nom": "Antoine Mayer",
     "whatsapp": "+33 6 95 18 14 18",
     "nb_personnes": 1,
@@ -858,10 +902,15 @@
     "slug": "terra-gaia-ecuador-galapagos",
     "nom": "Terra Gaia Ecuador & Galápagos",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "Équateur et Galapagos",
+    "pays_principal": "Équateur",
     "continent_principal": "Amériques",
-    "destinations_secondaires": [],
-    "description": "Équateur et Galapagos",
+    "destinations_secondaires": [
+      {
+        "pays": "Galápagos",
+        "continent": "Amériques"
+      }
+    ],
+    "description": "Équateur, Galápagos",
     "contact_nom": "Nicolas Goronflot",
     "whatsapp": "+593987159732",
     "nb_personnes": 2,
@@ -884,10 +933,15 @@
     "slug": "terra-guatemala",
     "nom": "Terra Guatemala",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "Guatemala Belize",
+    "pays_principal": "Guatemala",
     "continent_principal": "Amériques",
-    "destinations_secondaires": [],
-    "description": "Guatemala Belize",
+    "destinations_secondaires": [
+      {
+        "pays": "Belize",
+        "continent": "Amériques"
+      }
+    ],
+    "description": "Guatemala, Belize",
     "contact_nom": "Tristan Reger",
     "whatsapp": "(502) 3684 7687",
     "nb_personnes": 2,
@@ -910,10 +964,10 @@
     "slug": "terra-maya",
     "nom": "Terra Maya",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "MEXIQUE",
+    "pays_principal": "Mexique",
     "continent_principal": "Amériques",
     "destinations_secondaires": [],
-    "description": "MEXIQUE",
+    "description": "Mexique",
     "contact_nom": "Adelind Chambrier",
     "whatsapp": "(999) 366-7552",
     "nb_personnes": 2,
@@ -934,12 +988,12 @@
   },
   {
     "slug": "terra-morocco",
-    "nom": "terra morocco",
+    "nom": "Terra Morocco",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "maroc",
+    "pays_principal": "Maroc",
     "continent_principal": "Afrique",
     "destinations_secondaires": [],
-    "description": "maroc",
+    "description": "Maroc",
     "contact_nom": "laura",
     "whatsapp": "00212662343381",
     "nb_personnes": 2,
@@ -962,10 +1016,10 @@
     "slug": "terra-nicaragua",
     "nom": "Terra Nicaragua",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "NICARAGUA",
+    "pays_principal": "Nicaragua",
     "continent_principal": "Amériques",
     "destinations_secondaires": [],
-    "description": "NICARAGUA",
+    "description": "Nicaragua",
     "contact_nom": "Daphné de Vautibault",
     "whatsapp": "+502 35897157",
     "nb_personnes": 1,
@@ -988,10 +1042,10 @@
     "slug": "terra-peru",
     "nom": "Terra Peru",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "Peru",
+    "pays_principal": "Pérou",
     "continent_principal": "Amériques",
     "destinations_secondaires": [],
-    "description": "Peru",
+    "description": "Pérou",
     "contact_nom": "Vicky Minaya",
     "whatsapp": "+51 940203741",
     "nb_personnes": 1,
@@ -1012,7 +1066,7 @@
   },
   {
     "slug": "tierra-latina-argentine-bresil",
-    "nom": "Tierra Latina Argentine / Brésil",
+    "nom": "Tierra Latina",
     "email_contact": "martin@togezer.travel",
     "pays_principal": "Argentine",
     "continent_principal": "Amériques",
@@ -1026,7 +1080,7 @@
         "continent": "Amériques"
       }
     ],
-    "description": "Argentine / Brésil / Mexique",
+    "description": "Argentine, Brésil, Mexique",
     "contact_nom": "Chloé Proust",
     "whatsapp": "+33628229162",
     "nb_personnes": 2,
@@ -1075,10 +1129,10 @@
     "slug": "wakiy-tour",
     "nom": "Wakiy Tour",
     "email_contact": "martin@togezer.travel",
-    "pays_principal": "Equateur",
+    "pays_principal": "Équateur",
     "continent_principal": "Amériques",
     "destinations_secondaires": [],
-    "description": "Equateur",
+    "description": "Équateur",
     "contact_nom": "Olivia Baine",
     "whatsapp": "0033648393511",
     "nb_personnes": 1,
