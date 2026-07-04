@@ -272,6 +272,8 @@ export default function Booking({
 
 function traduire(msg: string): string {
   const m = msg.toLowerCase();
+  if (m.includes("déjà un rendez-vous avec ce réceptif"))
+    return "Vous avez déjà un rendez-vous avec ce réceptif (un seul par réceptif).";
   if (m.includes("indisponible") || m.includes("23p01")) return "Ce créneau vient d'être pris. Choisissez-en un autre.";
   if (m.includes("inscrit ce jour")) return "Vous n'êtes pas inscrit ce jour-là.";
   if (m.includes("présent ce jour")) return "Ce réceptif n'est pas présent ce jour-là.";

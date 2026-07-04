@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import AppHeader from "@/components/AppHeader";
 import JoursSelector from "./JoursSelector";
 import Booking, { type Receptif } from "./Booking";
 
@@ -37,11 +37,10 @@ export default async function Reservation() {
   }
 
   return (
-    <main className="mx-auto max-w-3xl px-6 py-12">
-      <Link href="/mon-espace" className="font-corps text-sm text-encreDoux hover:text-encre">
-        ← Mon espace
-      </Link>
-      <h1 className="mt-3 font-titre text-4xl font-600 text-encre">
+    <div className="min-h-screen">
+      <AppHeader />
+      <main className="mx-auto max-w-5xl px-6 py-10">
+      <h1 className="font-titre text-4xl font-600 text-encre">
         Prendre mes rendez-vous
       </h1>
 
@@ -66,7 +65,7 @@ export default async function Reservation() {
           Étape 2
         </p>
         <h2 className="mt-1 font-titre text-2xl font-600 text-encre">
-          Réserver mes créneaux du matin
+          Réserver mes créneaux
         </h2>
         {jours.length === 0 ? (
           <p className="mt-1 font-corps text-sm text-encreDoux">
@@ -78,6 +77,7 @@ export default async function Reservation() {
           </div>
         )}
       </section>
-    </main>
+      </main>
+    </div>
   );
 }

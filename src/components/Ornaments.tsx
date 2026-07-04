@@ -41,6 +41,22 @@ export function FiletRail({ className = "" }: { className?: string }) {
   );
 }
 
+// Globe au trait (méridiens/parallèles) — évoque la dimension internationale,
+// en fond discret.
+export function GlobeGrid({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 200 200" className={className} fill="none" stroke="currentColor" strokeWidth="0.8" aria-hidden>
+      <circle cx="100" cy="100" r="88" />
+      <ellipse cx="100" cy="100" rx="88" ry="30" />
+      <ellipse cx="100" cy="100" rx="88" ry="58" />
+      <ellipse cx="100" cy="100" rx="30" ry="88" />
+      <ellipse cx="100" cy="100" rx="58" ry="88" />
+      <line x1="12" y1="100" x2="188" y2="100" />
+      <line x1="100" y1="12" x2="100" y2="188" />
+    </svg>
+  );
+}
+
 // Séparateur « panneau émaillé » : filet double avec un petit repère central.
 export function FiletGare({ className = "" }: { className?: string }) {
   return (

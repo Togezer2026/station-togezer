@@ -64,7 +64,7 @@ export default function JoursSelector({ initial }: { initial: string[] }) {
           disabled={busy}
           className="rounded-full bg-brique px-7 py-3 font-corps font-600 text-creme hover:bg-briqueFonce disabled:opacity-50"
         >
-          {busy ? "Enregistrement…" : "Enregistrer mes jours"}
+          {busy ? "Validation…" : "Valider mes jours"}
         </button>
         {ok && <span className="font-corps text-sm text-brique">✓ Jours enregistrés</span>}
       </div>
