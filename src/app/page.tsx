@@ -22,7 +22,7 @@ const PROGRAMME = [
   },
 ];
 
-const IMAGES_VOIE15 = ["voie15-salle.jpg", "voie15-terrasse.jpg", "voie15-acces.jpg"];
+const IMAGES_VOIE15 = ["voie15-salle.png", "voie15-terrasse.png", "voie15-acces.png"];
 
 const ETAPES = [
   {
