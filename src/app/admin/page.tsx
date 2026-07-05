@@ -16,7 +16,10 @@ export default async function AdminHome() {
 
   const [{ data: recs }, { data: ags }, { data: rdvData }, { count: dejPending }] =
     await Promise.all([
-      supabase.from("exposants").select("id, nom, proprietaire_id").order("nom"),
+      supabase
+        .from("exposants")
+        .select("id, nom, proprietaire_id, description, logo_path, contact_nom, contact_photo, contact_bio, presences(jour)")
+        .order("nom"),
       supabase.from("agents").select("id, agence, created_at"),
       supabase.rpc("admin_rendez_vous"),
       supabase.from("demandes_dejeuner").select("*", { count: "exact", head: true }).eq("statut", "en_attente"),
@@ -34,13 +37,32 @@ export default async function AdminHome() {
 
   const parJour = JOURS.map((j) => ({ j, n: rdv.filter((r) => r.jour === j.iso).length }));
   const maxJour = Math.max(1, ...parJour.map((x) => x.n));
-  const topRec = receptifs
+  const classement = receptifs
     .map((r) => ({ nom: r.nom, n: rdvParRec.get(r.id) ?? 0 }))
-    .sort((a, b) => b.n - a.n)
-    .slice(0, 6);
+    .sort((a, b) => b.n - a.n);
+  const topRec = classement.slice(0, 6);
+  const flopRec = [...classement].reverse().slice(0, 6);
   const recSansRdv = receptifs.filter((r) => !rdvParRec.has(r.id));
   const agentsSansRdv = agents.filter((a) => !agentsAvecRdv.has(a.id));
   const recSansCompte = receptifs.filter((r) => !r.proprietaire_id);
+
+  // Fiches réceptif complètes à 100 % ?
+  const champsManquants = (r: {
+    description: string | null; logo_path: string | null; contact_nom: string | null;
+    contact_photo: string | null; contact_bio: string | null; presences: { jour: string }[];
+  }) => {
+    const m: string[] = [];
+    if (!r.description) m.push("description");
+    if (!r.logo_path) m.push("logo");
+    if (!r.contact_nom) m.push("représentant");
+    if (!r.contact_photo) m.push("photo du représentant");
+    if (!r.contact_bio) m.push("bio du représentant");
+    if (!r.presences || r.presences.length === 0) m.push("présence/jours");
+    return m;
+  };
+  const fichesIncompletes = receptifs
+    .map((r) => ({ nom: r.nom, manque: champsManquants(r) }))
+    .filter((r) => r.manque.length > 0);
 
   return (
     <div>
@@ -63,8 +85,8 @@ export default async function AdminHome() {
         <Kpi val={dejPending ?? 0} label="Déjeuners à valider" href="/admin/rendez-vous" accent />
       </div>
 
-      <div className="mt-6 grid gap-6 lg:grid-cols-2">
-        {/* RDV par jour */}
+      {/* RDV par jour */}
+      <div className="mt-6">
         <Carte titre="Rendez-vous par jour">
           <div className="space-y-3">
             {parJour.map(({ j, n }) => (
@@ -78,27 +100,20 @@ export default async function AdminHome() {
             ))}
           </div>
         </Carte>
+      </div>
 
-        {/* Top réceptifs */}
+      <div className="mt-6 grid gap-6 lg:grid-cols-2">
         <Carte titre="Réceptifs les plus demandés">
-          {topRec[0]?.n === 0 ? (
-            <p className="font-corps text-sm text-encreDoux">Aucun rendez-vous encore.</p>
-          ) : (
-            <ul className="space-y-2">
-              {topRec.map((r) => (
-                <li key={r.nom} className="flex items-center justify-between font-corps text-sm">
-                  <span className="text-encre">{r.nom}</span>
-                  <span className="font-700 text-brique">{r.n}</span>
-                </li>
-              ))}
-            </ul>
-          )}
+          <Classement items={topRec} />
+        </Carte>
+        <Carte titre="Réceptifs les moins demandés">
+          <Classement items={flopRec} />
         </Carte>
       </div>
 
       {/* À suivre / alertes */}
       <h2 className="mt-8 font-titre text-2xl font-600 text-encre">À suivre</h2>
-      <div className="mt-3 grid gap-6 lg:grid-cols-3">
+      <div className="mt-3 grid gap-6 lg:grid-cols-2">
         <Alerte
           titre="Réceptifs sans aucun RDV"
           items={recSansRdv.map((r) => r.nom)}
@@ -112,20 +127,17 @@ export default async function AdminHome() {
           vide="Tous les agents ont réservé 🎉"
         />
         <Alerte
-          titre="Réceptifs sans compte d'accès"
+          titre="Réceptifs sans compte d'accès (à activer)"
           items={recSansCompte.map((r) => r.nom)}
           href="/admin/receptifs"
           vide="Tous les réceptifs ont un accès."
         />
-      </div>
-
-      {/* Accès rapides */}
-      <h2 className="mt-8 font-titre text-2xl font-600 text-encre">Gérer</h2>
-      <div className="mt-3 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Lien href="/admin/receptifs" t="Réceptifs" d="Fiches, formules, accès" />
-        <Lien href="/admin/agents" t="Agents" d="Infos, MDP, suppression" />
-        <Lien href="/admin/rendez-vous" t="Rendez-vous" d="Vues, filtres, export" />
-        <Lien href="/admin/planning" t="Planning" d="Timeline glisser-déposer" />
+        <Alerte
+          titre="Fiches incomplètes"
+          items={fichesIncompletes.map((r) => `${r.nom} — manque : ${r.manque.join(", ")}`)}
+          href="/admin/receptifs"
+          vide="Toutes les fiches sont complètes 🎉"
+        />
       </div>
     </div>
   );
@@ -176,11 +188,17 @@ function Alerte({ titre, items, href, vide }: { titre: string; items: string[]; 
   );
 }
 
-function Lien({ href, t, d }: { href: string; t: string; d: string }) {
+function Classement({ items }: { items: { nom: string; n: number }[] }) {
+  if (!items.length || items.every((i) => i.n === 0))
+    return <p className="font-corps text-sm text-encreDoux">Aucun rendez-vous encore.</p>;
   return (
-    <Link href={href} className="rounded-xl border border-ligne bg-carte p-5 shadow-carte transition hover:border-brique/40">
-      <p className="font-titre text-lg font-600 text-encre">{t}</p>
-      <p className="mt-1 font-corps text-sm text-encreDoux">{d}</p>
-    </Link>
+    <ul className="space-y-2">
+      {items.map((r) => (
+        <li key={r.nom} className="flex items-center justify-between font-corps text-sm">
+          <span className="text-encre">{r.nom}</span>
+          <span className="font-700 text-brique">{r.n}</span>
+        </li>
+      ))}
+    </ul>
   );
 }

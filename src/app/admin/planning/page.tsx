@@ -6,10 +6,16 @@ export const dynamic = "force-dynamic";
 export default async function AdminPlanning() {
   const { supabase } = await requireAdmin();
   const { data: rdvData } = await supabase.rpc("admin_rendez_vous");
-  const [{ data: recs }, { data: ags }] = await Promise.all([
-    supabase.from("exposants").select("id, nom").order("nom"),
+  const [{ data: recs }, { data: ags }, { data: aj }] = await Promise.all([
+    supabase.from("exposants").select("id, nom, presences(jour, formule)").order("nom"),
     supabase.from("agents").select("id, agence").order("agence"),
+    supabase.from("agent_jours").select("agent_id, jour"),
   ]);
+
+  const agentJours: Record<string, string[]> = {};
+  (aj ?? []).forEach((r) => {
+    (agentJours[r.agent_id as string] ??= []).push(r.jour as string);
+  });
 
   return (
     <div>
@@ -20,8 +26,9 @@ export default async function AdminPlanning() {
       </p>
       <Planning
         rdvs={(rdvData ?? []) as PlanningRdv[]}
-        receptifs={(recs ?? []) as { id: string; nom: string }[]}
+        receptifs={(recs ?? []) as unknown as { id: string; nom: string; presences: { jour: string; formule: string }[] }[]}
         agents={(ags ?? []) as { id: string; agence: string }[]}
+        agentJours={agentJours}
       />
     </div>
   );

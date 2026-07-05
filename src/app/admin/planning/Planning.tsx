@@ -18,16 +18,18 @@ export type PlanningRdv = {
   receptif: string | null;
 };
 
-const SLOTS = [...CRENEAUX_MATIN, ...CRENEAUX_APREM];
+const BREAKFAST = new Set(["petits_dej", "biz_biz", "journee"]);
 
 export default function Planning({
   rdvs,
   receptifs,
   agents,
+  agentJours,
 }: {
   rdvs: PlanningRdv[];
-  receptifs: { id: string; nom: string }[];
+  receptifs: { id: string; nom: string; presences: { jour: string; formule: string }[] }[];
   agents: { id: string; agence: string }[];
+  agentJours: Record<string, string[]>;
 }) {
   const router = useRouter();
   const supabase = createClient();
@@ -55,6 +57,21 @@ export default function Planning({
 
   // Étiquette du bloc = l'autre partie
   const label = (r: PlanningRdv) => (mode === "receptif" ? r.agence : r.receptif) ?? "—";
+
+  // Jours et créneaux affichés = ceux réellement réservés par l'entité
+  const selReceptif = mode === "receptif" ? receptifs.find((r) => r.id === entityId) : null;
+  const jours = !entityId
+    ? []
+    : mode === "receptif"
+      ? JOURS.filter((j) => selReceptif?.presences.some((p) => p.jour === j.iso && p.formule !== "absent"))
+      : JOURS.filter((j) => (agentJours[entityId] ?? []).includes(j.iso));
+  const slotsFor = (jourIso: string): string[] => {
+    if (mode === "agent") return [...CRENEAUX_MATIN, ...CRENEAUX_APREM];
+    const f = selReceptif?.presences.find((p) => p.jour === jourIso)?.formule;
+    if (f === "journee") return [...CRENEAUX_MATIN, ...CRENEAUX_APREM];
+    if (f === "petits_dej" || f === "biz_biz") return CRENEAUX_MATIN;
+    return [];
+  };
 
   async function drop(jour: string, hhmm: string) {
     const id = dragRef.current;
@@ -108,6 +125,20 @@ export default function Planning({
     router.refresh();
   }
 
+  async function supprimer(r: PlanningRdv) {
+    if (!confirm(`Supprimer ce rendez-vous ?\n\n${label(r)}\n${labelJour(r.jour)} à ${affiche(normDebut(r.debut).slice(11))}\n\nLe créneau sera libéré. Action définitive.`))
+      return;
+    setBusy(true);
+    setErreur(null);
+    const { error } = await supabase.rpc("annuler_engagement", { p_id: r.id, p_message: null });
+    setBusy(false);
+    if (error) {
+      setErreur("Suppression impossible.");
+      return;
+    }
+    router.refresh();
+  }
+
   return (
     <div>
       <div className="mb-5 flex flex-wrap items-center gap-3">
@@ -133,11 +164,14 @@ export default function Planning({
         </p>
       ) : (
         <div className="grid gap-4 md:grid-cols-3">
-          {JOURS.map((j) => (
+          {jours.length === 0 && (
+            <p className="font-corps text-encreDoux">Cette entité n'est présente sur aucun jour.</p>
+          )}
+          {jours.map((j) => (
             <div key={j.iso} className="rounded-xl border border-ligne bg-carte p-3 shadow-carte">
               <p className="mb-2 text-center font-titre text-lg font-600 text-encre">{j.label}</p>
               <div className="space-y-1">
-                {SLOTS.map((hhmm) => {
+                {slotsFor(j.iso).map((hhmm) => {
                   const r = at(j.iso, hhmm);
                   return (
                     <div
@@ -154,9 +188,13 @@ export default function Planning({
                           draggable
                           onDragStart={() => { dragRef.current = r.id; }}
                           title="Glissez pour déplacer"
-                          className="flex-1 cursor-grab truncate rounded-md bg-brique px-2 py-1.5 font-corps text-xs font-600 text-creme active:cursor-grabbing"
+                          className="flex flex-1 items-center gap-1 rounded-md bg-brique px-2 py-1.5 font-corps text-xs font-600 text-creme"
                         >
-                          {label(r)}
+                          <span className="flex-1 cursor-grab truncate active:cursor-grabbing">{label(r)}</span>
+                          <button onClick={() => supprimer(r)} title="Supprimer ce RDV"
+                            className="shrink-0 rounded px-1 text-creme/80 hover:bg-white/20 hover:text-white">
+                            ✕
+                          </button>
                         </div>
                       ) : (
                         <button
