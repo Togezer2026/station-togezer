@@ -93,20 +93,6 @@ export default async function Home() {
 
         {/* Appel à l'action + gratuité (remonté) */}
         <div className="mt-8 flex flex-col items-center gap-3">
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="/inscription"
-              className="rounded-full bg-brique px-8 py-3 font-corps font-600 tracking-wide text-creme shadow-carte transition hover:bg-briqueFonce"
-            >
-              Je m'inscris en tant qu'agent de voyages
-            </Link>
-            <Link
-              href="/connexion"
-              className="rounded-full border border-encre/20 px-8 py-3 font-corps font-500 tracking-wide text-encre transition hover:bg-encre/5"
-            >
-              J'ai déjà un compte, je me connecte
-            </Link>
-          </div>
           <a
             href="/annuaire"
             target="_blank"
@@ -115,10 +101,22 @@ export default async function Home() {
           >
             Voir les réceptifs
           </a>
+          <Link
+            href="/inscription"
+            className="rounded-full bg-brique px-8 py-3 font-corps font-600 tracking-wide text-creme shadow-carte transition hover:bg-briqueFonce"
+          >
+            Je m'inscris en tant qu'agent de voyages
+          </Link>
           <p className="font-corps text-sm text-encreDoux">
             Accès <span className="font-600 text-brique">gratuit</span> pour les agents
             de voyage — sur simple inscription.
           </p>
+          <Link
+            href="/connexion"
+            className="rounded-full border border-encre/20 px-8 py-3 font-corps font-500 tracking-wide text-encre transition hover:bg-encre/5"
+          >
+            J'ai déjà un compte, je me connecte
+          </Link>
         </div>
 
         {/* Le Programme */}
