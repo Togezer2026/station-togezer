@@ -37,6 +37,15 @@ export default function RdvTable({ rows }: { rows: Rdv[] }) {
   const [q, setQ] = useState("");
   const [group, setGroup] = useState<"aucun" | "receptif" | "agent" | "jour">("aucun");
   const [busy, setBusy] = useState<string | null>(null);
+  const [sel, setSel] = useState<Set<string>>(new Set());
+
+  const toggleSel = (id: string) =>
+    setSel((p) => {
+      const n = new Set(p);
+      if (n.has(id)) n.delete(id);
+      else n.add(id);
+      return n;
+    });
 
   const filtres = useMemo(() => {
     const qq = q.trim().toLowerCase();
@@ -61,6 +70,20 @@ export default function RdvTable({ rows }: { rows: Rdv[] }) {
       alert("La suppression a échoué.");
       return;
     }
+    router.refresh();
+  }
+
+  const idsFiltres = filtres.map((r) => r.id);
+  const toutSelectionne = idsFiltres.length > 0 && idsFiltres.every((id) => sel.has(id));
+  const toggleTout = () => setSel(toutSelectionne ? new Set() : new Set(idsFiltres));
+
+  async function supprimerSelection() {
+    if (sel.size === 0) return;
+    if (!confirm(`Supprimer ${sel.size} rendez-vous ? Les créneaux seront libérés. Action définitive.`)) return;
+    setBusy("bulk");
+    await Promise.all([...sel].map((id) => supabase.rpc("annuler_engagement", { p_id: id, p_message: null })));
+    setBusy(null);
+    setSel(new Set());
     router.refresh();
   }
 
@@ -122,6 +145,16 @@ export default function RdvTable({ rows }: { rows: Rdv[] }) {
         <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Rechercher…"
           className={champ + " min-w-[200px] flex-1"} />
         <span className="font-corps text-sm text-encreDoux">{filtres.length} RDV</span>
+        <button onClick={toggleTout}
+          className="rounded-full border border-encre/20 px-4 py-2 font-corps text-sm text-encre hover:bg-creme">
+          {toutSelectionne ? "Tout désélectionner" : "Tout sélectionner"}
+        </button>
+        {sel.size > 0 && (
+          <button onClick={supprimerSelection} disabled={busy === "bulk"}
+            className="rounded-full bg-red-600 px-4 py-2 font-corps text-sm font-600 text-white hover:bg-red-700 disabled:opacity-50">
+            Supprimer la sélection ({sel.size})
+          </button>
+        )}
         <button onClick={exportCsv}
           className="rounded-full border border-encre/20 px-4 py-2 font-corps text-sm text-encre hover:bg-creme">
           Exporter (CSV)
@@ -140,6 +173,9 @@ export default function RdvTable({ rows }: { rows: Rdv[] }) {
               <table className="w-full text-left font-corps text-sm">
                 <thead className="border-b border-ligne text-xs uppercase tracking-wide text-encreDoux">
                   <tr>
+                    <th className="px-3 py-3">
+                      <input type="checkbox" checked={toutSelectionne} onChange={toggleTout} className="accent-brique" />
+                    </th>
                     <th className="px-4 py-3">Jour</th>
                     <th className="px-4 py-3">Horaire</th>
                     <th className="px-4 py-3">Type</th>
@@ -151,13 +187,16 @@ export default function RdvTable({ rows }: { rows: Rdv[] }) {
                 </thead>
                 <tbody>
                   {g.items.length === 0 ? (
-                    <tr><td colSpan={7} className="px-4 py-10 text-center text-encreDoux">Aucun rendez-vous.</td></tr>
+                    <tr><td colSpan={8} className="px-4 py-10 text-center text-encreDoux">Aucun rendez-vous.</td></tr>
                   ) : (
                     g.items
                       .slice()
                       .sort((a, b) => a.jour.localeCompare(b.jour) || a.debut.localeCompare(b.debut))
                       .map((r) => (
-                        <tr key={r.id} className="border-b border-ligne/60 last:border-0">
+                        <tr key={r.id} className={`border-b border-ligne/60 last:border-0 ${sel.has(r.id) ? "bg-brique/5" : ""}`}>
+                          <td className="px-3 py-3">
+                            <input type="checkbox" checked={sel.has(r.id)} onChange={() => toggleSel(r.id)} className="accent-brique" />
+                          </td>
                           <td className="px-4 py-3 text-encreDoux">{labelJour(r.jour)}</td>
                           <td className="px-4 py-3 font-600 text-brique">{heure(r.debut)}–{heure(r.fin)}</td>
                           <td className="px-4 py-3 text-encreDoux">{KIND_LABEL[r.kind] ?? r.kind}</td>
