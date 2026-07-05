@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Wordmark from "@/components/Wordmark";
 import { FiletGare } from "@/components/Ornaments";
+import GalerieVoie15 from "@/components/GalerieVoie15";
 
 const MAPS_URL = "https://maps.app.goo.gl/u6fRgKjAh7WwCScH9";
 
@@ -128,18 +129,8 @@ export default function Home() {
           </a>
         </div>
 
-        {/* Images du lieu — discrètes mais visibles */}
-        <div className="mt-8 grid grid-cols-3 gap-3">
-          {IMAGES_VOIE15.map((f) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              key={f}
-              src={`/${f}`}
-              alt="Voie 15"
-              className="h-24 w-full rounded-lg object-cover shadow-carte sm:h-36"
-            />
-          ))}
-        </div>
+        {/* Images du lieu — clic pour agrandir */}
+        <GalerieVoie15 images={IMAGES_VOIE15} />
       </section>
 
       <div className="mx-auto max-w-3xl px-6">
