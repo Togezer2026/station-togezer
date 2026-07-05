@@ -40,6 +40,7 @@ export default function Messagerie({
   const [fil, setFil] = useState<Msg[]>([]);
   const [texte, setTexte] = useState("");
   const [envoi, setEnvoi] = useState(false);
+  const [erreurEnvoi, setErreurEnvoi] = useState<string | null>(null);
   const finRef = useRef<HTMLDivElement>(null);
 
   const titreConv = (c: Conv) => (role === "agent" ? c.receptif : c.agence);
@@ -102,13 +103,17 @@ export default function Messagerie({
   async function envoyer() {
     if (!sel || !texte.trim() || envoi) return;
     setEnvoi(true);
+    setErreurEnvoi(null);
     const { error } = await supabase.rpc("envoyer_message", {
       p_agent_id: sel.agent_id,
       p_exposant_id: sel.exposant_id,
       p_contenu: texte.trim(),
     });
     setEnvoi(false);
-    if (error) return;
+    if (error) {
+      setErreurEnvoi("L'envoi a échoué. Vérifiez votre connexion et réessayez.");
+      return;
+    }
     setTexte("");
     await chargerFil(sel.agent_id, sel.exposant_id);
     chargerConvs();
@@ -197,6 +202,11 @@ export default function Messagerie({
               })}
               <div ref={finRef} />
             </div>
+            {erreurEnvoi && (
+              <p className="border-t border-ligne px-3 pt-2 font-corps text-xs text-red-600">
+                {erreurEnvoi}
+              </p>
+            )}
             <div className="flex items-end gap-2 border-t border-ligne p-3">
               <textarea
                 value={texte}

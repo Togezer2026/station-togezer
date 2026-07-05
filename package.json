@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "gen:logos": "node scripts/gen-logos.mjs"
+    "gen:logos": "node scripts/gen-logos.mjs",
+    "test:regles": "node scripts/test-regles.mjs",
+    "etat:prod": "node scripts/etat-prod.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.5.2",

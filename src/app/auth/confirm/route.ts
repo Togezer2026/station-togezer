@@ -8,7 +8,9 @@ import { createClient } from "@/lib/supabase/server";
 // Puis redirige l'agent vers sa page de réservation (?next=...).
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
-  const next = searchParams.get("next") ?? "/mon-espace";
+  // Seuls les chemins internes sont autorisés (pas de redirection externe).
+  const brut = searchParams.get("next") ?? "/mon-espace";
+  const next = brut.startsWith("/") && !brut.startsWith("//") ? brut : "/mon-espace";
   const token_hash = searchParams.get("token_hash");
   const type = searchParams.get("type") as EmailOtpType | null;
   const code = searchParams.get("code");

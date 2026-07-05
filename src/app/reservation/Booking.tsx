@@ -106,7 +106,10 @@ export default function Booking({
   async function annulerTout() {
     if (!confirm("Réinitialiser : annuler TOUS vos rendez-vous ? Cette action est définitive.")) return;
     const { error } = await supabase.rpc("annuler_mes_rdv");
-    if (error) return;
+    if (error) {
+      setErreur("La réinitialisation a échoué. Réessayez.");
+      return;
+    }
     await loadMes();
     if (sel) JOURS.filter((j) => joursAgent.includes(j.iso)).forEach((j) => loadOcc(sel, j.iso));
   }

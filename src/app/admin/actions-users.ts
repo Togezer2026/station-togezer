@@ -7,7 +7,8 @@ import { revalidatePath } from "next/cache";
 
 async function origin() {
   const h = await headers();
-  const host = h.get("host") ?? "localhost:5192";
+  const host = h.get("host");
+  if (!host) return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
   const proto = host.includes("localhost") ? "http" : "https";
   return `${proto}://${host}`;
 }

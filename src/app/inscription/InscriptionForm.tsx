@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 
-export default function InscriptionPage() {
+export default function InscriptionForm() {
   const router = useRouter();
   const [form, setForm] = useState({
     agence: "",

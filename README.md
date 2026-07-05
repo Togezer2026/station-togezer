@@ -1,6 +1,6 @@
 # La Station TogeZer — outil meet & match
 
-Plateforme de prise de rendez-vous B2B (agents de voyage ↔ réceptifs) pour l'IFTM Top Resa — **15, 16 & 17 septembre 2026**.
+Plateforme de prise de rendez-vous (agents de voyage ↔ réceptifs) — La Station TogeZer, Voie 15, Paris — **15, 16 & 17 septembre 2026**.
 
 ## Stack
 - **Next.js 15** (App Router, TypeScript) + **Tailwind CSS**
@@ -34,7 +34,7 @@ public/logos/       Logos factices (SVG)
 ```bash
 npm install
 cp .env.local.example .env.local   # remplir les clés Supabase
-npm run dev                         # http://localhost:5192
+npm run dev                         # http://localhost:3000
 ```
 
 ## Brancher Supabase (projet TogeZer)
