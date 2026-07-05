@@ -68,13 +68,12 @@ export default function Home() {
         </h1>
 
         <p className="mx-auto mt-7 max-w-xl font-corps text-lg leading-relaxed text-encreDoux">
-          <span className="font-600 text-encre">Cher(e)s Agents de Voyages,</span> La
-          Station TogeZer, c'est avant tout un lieu chaleureux où les agents de voyage
-          et les réceptifs se rencontrent pour de vrai. Tous nos évènements sont
-          désormais rassemblés dans un seul hub. Nos fameux petits-déjeuners, des
-          déjeuners de réseautage offerts aux agents de voyages et des après-midis de
-          rendez-vous accompagnés de formations par destination. Trois journées pour
-          tisser des liens, dénicher des nouveautés et repartir avec plein de projets&nbsp;!
+          <span className="mb-1 block font-600 text-encre">Cher(e)s Agents de Voyages,</span>
+          La Station TogeZer réunit désormais tous nos événements en un seul hub&nbsp;:
+          nos fameux Petits-Déjs, déjeuners de réseautage et des après-midis de
+          rendez-vous accompagnés de formations par destination. Trois jours pour
+          rencontrer les réceptifs, découvrir des nouveautés et repartir avec des
+          projets concrets.
         </p>
 
         {/* Appel à l'action + gratuité (remonté) */}
