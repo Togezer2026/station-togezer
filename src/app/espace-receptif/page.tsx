@@ -6,6 +6,7 @@ import { JOURS, labelJour, FORMULE_LABEL } from "@/lib/jours";
 import { affiche, normDebut } from "@/lib/creneaux";
 import { GlobeGrid } from "@/components/Ornaments";
 import SolliciterAgent from "./SolliciterAgent";
+import Messagerie from "@/components/Messagerie";
 
 export const dynamic = "force-dynamic";
 
@@ -132,9 +133,15 @@ export default async function EspaceReceptif() {
 
         <SolliciterAgent />
 
-        <p className="mt-8 rounded-lg border border-dashed border-ligne p-4 font-corps text-sm text-encreDoux">
-          Bientôt : la messagerie pour échanger avec les agents.
-        </p>
+        {fiche && (
+          <div className="mt-10">
+            <h2 className="font-titre text-2xl font-600 text-encre">Messagerie</h2>
+            <p className="mb-4 mt-1 font-corps text-sm text-encreDoux">
+              Échangez directement avec les agents de voyage.
+            </p>
+            <Messagerie role="receptif" exposantId={fiche.id} />
+          </div>
+        )}
       </div>
     </div>
   );

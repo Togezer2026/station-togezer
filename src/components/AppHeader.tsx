@@ -24,6 +24,12 @@ export default function AppHeader() {
             Mes rendez-vous
           </Link>
           <Link
+            href="/messages"
+            className="rounded-full px-3 py-1.5 font-corps text-sm text-encreDoux transition hover:bg-creme hover:text-encre"
+          >
+            Messagerie
+          </Link>
+          <Link
             href="/annuaire"
             className="rounded-full px-3 py-1.5 font-corps text-sm text-encreDoux transition hover:bg-creme hover:text-encre"
           >
