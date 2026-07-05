@@ -203,7 +203,7 @@ function ExposantCard({ e }: { e: ExposantAnnuaire }) {
               }`}
               title={p ? FORMULE_LABEL[p.formule] : "Absent"}
             >
-              {j.court}
+              {j.courtDate}
             </span>
           );
         })}

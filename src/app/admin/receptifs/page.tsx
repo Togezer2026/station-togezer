@@ -29,6 +29,12 @@ export default async function AdminReceptifs() {
           <h1 className="font-titre text-3xl font-600 text-encre">Réceptifs</h1>
           <p className="mt-1 font-corps text-sm text-encreDoux">
             {rows.length} fiches — cliquez pour tout éditer.
+            <span className="ml-3 rounded-md bg-brique/10 px-1.5 py-0.5 text-xs font-700 text-brique">PD</span>
+            <span className="ml-1 text-xs">Petits-Déj</span>
+            <span className="ml-2 rounded-md bg-brique/10 px-1.5 py-0.5 text-xs font-700 text-brique">BB</span>
+            <span className="ml-1 text-xs">BiZ-BiZ</span>
+            <span className="ml-2 rounded-md bg-brique/10 px-1.5 py-0.5 text-xs font-700 text-brique">J</span>
+            <span className="ml-1 text-xs">Journée</span>
           </p>
         </div>
         <Link
@@ -67,9 +73,16 @@ export default async function AdminReceptifs() {
                 <td className="px-4 py-3 text-encreDoux">{r.contact_nom ?? "—"}</td>
                 {JOURS.map((j) => {
                   const p = r.presences.find((x) => x.jour === j.iso);
+                  const court: Record<string, string> = { petits_dej: "PD", biz_biz: "BB", journee: "J" };
                   return (
                     <td key={j.iso} className="px-3 py-3 text-center" title={p ? FORMULE_LABEL[p.formule] : "Absent"}>
-                      {p ? <span className="text-brique">●</span> : <span className="text-encre/20">–</span>}
+                      {p && p.formule !== "absent" ? (
+                        <span className="inline-block min-w-[26px] rounded-md bg-brique/10 px-1.5 py-0.5 text-xs font-700 text-brique">
+                          {court[p.formule] ?? "●"}
+                        </span>
+                      ) : (
+                        <span className="text-encre/20">–</span>
+                      )}
                     </td>
                   );
                 })}

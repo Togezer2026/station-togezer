@@ -33,6 +33,7 @@ export type ExposantEdit = {
   nb_personnes: number | null;
   notes: string | null;
   representant: string | null;
+  groupe_id: string | null;
   exposant_destinations: { pays: string; continent: string }[];
   presences: { jour: string; formule: string }[];
 };
@@ -165,8 +166,11 @@ export default function EditForm({ exposant }: { exposant: ExposantEdit | null }
             <input className={champ} value={f.email_contact} onChange={set("email_contact")} /></label>
           <label><span className={lbl}>Nb de personnes</span>
             <input className={champ} type="number" value={f.nb_personnes} onChange={set("nb_personnes")} /></label>
-          <label><span className={lbl}>Représentant (regroupement)</span>
-            <input className={champ} value={f.representant} onChange={set("representant")} placeholder="ex. Mathilde Quéva" /></label>
+          {/* Champ réservé aux fiches regroupées (agenda partagé type Alkémia/Tamazirt/Serengeti) */}
+          {(exposant?.groupe_id || exposant?.representant) && (
+            <label><span className={lbl}>Représentant (regroupement)</span>
+              <input className={champ} value={f.representant} onChange={set("representant")} placeholder="ex. Mathilde Quéva" /></label>
+          )}
           <label><span className={lbl}>Logo (chemin)</span>
             <input className={champ} value={f.logo_path} onChange={set("logo_path")} placeholder="/logos/xxx.svg" /></label>
           <label className="sm:col-span-2"><span className={lbl}>Notes internes</span>

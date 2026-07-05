@@ -13,17 +13,17 @@ const PROGRAMME = [
   {
     h: "09h00 – 13h00",
     t: "Les Petits-Dejs TogeZer",
-    d: "Nos fameux rendez-vous du matin, en tête-à-tête.",
+    d: "Nos fameux rendez-vous en tête-à-tête de 20 minutes, toute la matinée de 9h00 à 13h00.",
   },
   {
     h: "13h00 – 14h00",
     t: "Dejs Biz Biz",
-    d: "Offert aux agents de voyages, sur réservation.",
+    d: "Une heure de déjeuner dans une ambiance conviviale, avec un ou plusieurs réceptifs — assis ou debout, c'est vous qui décidez.",
   },
   {
     h: "14h00 – 18h00",
-    t: "Les Zaprems",
-    d: "Des formations d'une heure par destination.",
+    t: "Les Z'aprems",
+    d: "Des formations d'une heure par destination, et des rendez-vous en tête-à-tête avec les réceptifs.",
   },
 ];
 
@@ -55,34 +55,40 @@ export default async function Home() {
           <Wordmark className="h-auto w-[175px]" />
         </Link>
         <div className="flex items-center gap-2 sm:gap-4">
-          <Link
+          <a
             href="/annuaire"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden font-corps text-sm text-encreDoux underline-offset-4 hover:text-encre hover:underline sm:inline"
           >
-            Les réceptifs
-          </Link>
+            Voir la liste des réceptifs participants
+          </a>
           <Link
             href="/connexion"
             className="rounded-full border border-encre/25 px-5 py-2 font-corps text-sm font-500 text-encre transition hover:bg-encre/5"
           >
-            Se connecter
+            <span className="hidden text-encreDoux sm:inline">Vous avez déjà un compte&nbsp;? </span>
+            <span className="font-600">Se connecter</span>
           </Link>
         </div>
       </header>
 
       {/* Hero */}
       <section className="mx-auto max-w-3xl px-6 pb-12 pt-12 text-center sm:pt-16">
-        <h1 className="font-titre text-5xl font-600 leading-[1.05] text-encre sm:text-6xl">
+        <h1 className="font-titre text-4xl font-600 uppercase leading-[1.1] tracking-wide text-encre sm:text-5xl">
           Bienvenue à bord de la station des réceptifs&nbsp;!
         </h1>
 
         <p className="mx-auto mt-7 max-w-xl font-corps text-lg leading-relaxed text-encreDoux">
-          <span className="mb-1 block font-600 text-encre">Cher(e)s Agents de Voyages,</span>
-          La Station TogeZer réunit désormais tous nos événements en un seul hub&nbsp;:
-          nos fameux Petits-Déjs, déjeuners de réseautage et des après-midis de
-          rendez-vous accompagnés de formations par destination. Trois jours pour
-          rencontrer les réceptifs, découvrir des nouveautés et repartir avec des
-          projets concrets.
+          <span className="mb-1 block font-600 text-encre">Chers Agents de Voyages,</span>
+          La Station TogeZer réunit pour la première fois tous nos formats phares en
+          un seul événement&nbsp;: Petits-Déjeuners, déjeuners de réseautage et
+          après-midis de rendez-vous, rythmés par des formations dédiées à chaque
+          destination.
+          <span className="mt-2 block">
+            Trois jours pour rencontrer nos réceptifs, découvrir des nouveautés et
+            repartir avec des projets concrets.
+          </span>
         </p>
 
         {/* Appel à l'action + gratuité (remonté) */}
@@ -92,15 +98,23 @@ export default async function Home() {
               href="/inscription"
               className="rounded-full bg-brique px-8 py-3 font-corps font-600 tracking-wide text-creme shadow-carte transition hover:bg-briqueFonce"
             >
-              Je m'inscris
+              Je m'inscris en tant qu'agent de voyages
             </Link>
             <Link
-              href="/annuaire"
+              href="/connexion"
               className="rounded-full border border-encre/20 px-8 py-3 font-corps font-500 tracking-wide text-encre transition hover:bg-encre/5"
             >
-              Voir les réceptifs
+              J'ai déjà un compte, je me connecte
             </Link>
           </div>
+          <a
+            href="/annuaire"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-corps text-sm text-brique underline underline-offset-2"
+          >
+            Voir les réceptifs
+          </a>
           <p className="font-corps text-sm text-encreDoux">
             Accès <span className="font-600 text-brique">gratuit</span> pour les agents
             de voyage — sur simple inscription.
@@ -108,13 +122,16 @@ export default async function Home() {
         </div>
 
         {/* Le Programme */}
-        <h2 className="mt-14 font-titre text-3xl font-600 text-encre">Le Programme</h2>
-        <div className="mt-6 grid gap-px overflow-hidden rounded-xl border border-ligne bg-ligne sm:grid-cols-3">
+        <h2 className="mt-16 font-titre text-4xl font-600 text-encre">Le Programme</h2>
+        <div className="mt-7 grid gap-4 sm:grid-cols-3">
           {PROGRAMME.map((p) => (
-            <div key={p.t} className="bg-carte px-5 py-5 text-center">
-              <p className="font-titre text-lg font-600 text-brique">{p.h}</p>
-              <p className="mt-1 font-corps text-sm font-600 text-encre">{p.t}</p>
-              <p className="mt-1 font-corps text-xs leading-snug text-encreDoux">{p.d}</p>
+            <div
+              key={p.t}
+              className="rounded-xl border-2 border-double border-brique/40 bg-carte px-5 py-6 text-center shadow-carte"
+            >
+              <p className="font-corps text-sm font-700 tracking-[0.15em] text-brique">{p.h}</p>
+              <p className="mt-2 font-titre text-2xl font-600 leading-tight text-encre">{p.t}</p>
+              <p className="mt-3 font-corps text-sm leading-relaxed text-encreDoux">{p.d}</p>
             </div>
           ))}
         </div>

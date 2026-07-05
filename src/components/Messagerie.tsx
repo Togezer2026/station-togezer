@@ -27,10 +27,12 @@ export default function Messagerie({
   role,
   agentId,
   exposantId,
+  initialPartnerId,
 }: {
   role: "agent" | "receptif";
   agentId?: string;
   exposantId?: string;
+  initialPartnerId?: string;
 }) {
   const supabase = createClient();
   const [uid, setUid] = useState<string | null>(null);
@@ -89,6 +91,13 @@ export default function Messagerie({
   useEffect(() => {
     finRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [fil]);
+
+  // Arrivée via un lien « 💬 » : ouvre directement la conversation demandée.
+  useEffect(() => {
+    if (!initialPartnerId || sel || partners.length === 0) return;
+    ouvrirNouveau(initialPartnerId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [partners]);
 
   function ouvrirNouveau(id: string) {
     const p = partners.find((x) => x.id === id);

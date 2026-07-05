@@ -1,8 +1,8 @@
 // Les 3 jours de l'événement — source unique de vérité.
 export const JOURS = [
-  { iso: "2026-09-15", label: "Mardi 15", court: "Mar" },
-  { iso: "2026-09-16", label: "Mercredi 16", court: "Mer" },
-  { iso: "2026-09-17", label: "Jeudi 17", court: "Jeu" },
+  { iso: "2026-09-15", label: "Mardi 15", court: "Mar", courtDate: "Mar 15" },
+  { iso: "2026-09-16", label: "Mercredi 16", court: "Mer", courtDate: "Mer 16" },
+  { iso: "2026-09-17", label: "Jeudi 17", court: "Jeu", courtDate: "Jeu 17" },
 ] as const;
 
 export type JourIso = (typeof JOURS)[number]["iso"];

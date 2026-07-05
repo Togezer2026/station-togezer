@@ -5,7 +5,12 @@ import Messagerie from "@/components/Messagerie";
 
 export const dynamic = "force-dynamic";
 
-export default async function MessagesAgent() {
+export default async function MessagesAgent({
+  searchParams,
+}: {
+  searchParams: Promise<{ receptif?: string }>;
+}) {
+  const { receptif } = await searchParams;
   const supabase = await createClient();
   const {
     data: { user },
@@ -27,7 +32,7 @@ export default async function MessagesAgent() {
         <p className="mb-6 mt-1 font-corps text-encreDoux">
           Échangez avec les réceptifs — avant ou après un rendez-vous.
         </p>
-        <Messagerie role="agent" agentId={user.id} />
+        <Messagerie role="agent" agentId={user.id} initialPartnerId={receptif} />
       </div>
     </div>
   );
