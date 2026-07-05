@@ -30,6 +30,12 @@ export default function AppHeader() {
             Messagerie
           </Link>
           <Link
+            href="/mes-informations"
+            className="rounded-full px-3 py-1.5 font-corps text-sm text-encreDoux transition hover:bg-creme hover:text-encre"
+          >
+            Mes informations
+          </Link>
+          <Link
             href="/annuaire"
             className="rounded-full px-3 py-1.5 font-corps text-sm text-encreDoux transition hover:bg-creme hover:text-encre"
           >

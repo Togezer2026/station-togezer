@@ -4,7 +4,6 @@ import { createClient } from "@/lib/supabase/server";
 import { labelJour } from "@/lib/jours";
 import AppHeader from "@/components/AppHeader";
 import { GlobeGrid } from "@/components/Ornaments";
-import ModifierInfos from "./ModifierInfos";
 
 export const dynamic = "force-dynamic";
 
@@ -104,19 +103,35 @@ export default async function MonEspace() {
           </Link>
         </div>
 
-        {/* Inscription — éditable */}
-        <ModifierInfos
-          initial={{
-            agence: agent?.agence ?? "",
-            ville: agent?.ville ?? "",
-            prenom: agent?.prenom ?? "",
-            nom: agent?.nom ?? "",
-            telephone: agent?.telephone ?? "",
-          }}
-          email={agent?.email ?? ""}
-          joursLabel={jours.length ? jours.map(labelJour).join(", ") : "À choisir"}
-        />
+        {/* Mes informations — résumé + lien vers la page dédiée */}
+        <div className="rounded-xl border border-ligne bg-carte p-6 shadow-carte">
+          <div className="flex items-center justify-between">
+            <p className="font-corps text-xs font-600 uppercase tracking-[0.2em] text-brique">
+              Mes informations
+            </p>
+            <Link href="/mes-informations" className="font-corps text-sm text-brique underline underline-offset-2">
+              Modifier
+            </Link>
+          </div>
+          <dl className="mt-3 space-y-2 font-corps text-sm">
+            <Ligne k="Agence" v={agent?.agence} />
+            <Ligne k="Ville" v={agent?.ville} />
+            <Ligne k="Contact" v={`${agent?.prenom ?? ""} ${agent?.nom ?? ""}`} />
+            <Ligne k="E-mail" v={agent?.email} />
+            {agent?.telephone && <Ligne k="Téléphone" v={agent.telephone} />}
+            <Ligne k="Jours" v={jours.length ? jours.map(labelJour).join(", ") : "À choisir"} />
+          </dl>
+        </div>
       </div>
+    </div>
+  );
+}
+
+function Ligne({ k, v }: { k: string; v?: string | null }) {
+  return (
+    <div className="flex justify-between gap-3">
+      <dt className="text-encreDoux">{k}</dt>
+      <dd className="text-right font-500 text-encre">{v || "—"}</dd>
     </div>
   );
 }

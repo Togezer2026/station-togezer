@@ -1,7 +1,11 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import Wordmark from "@/components/Wordmark";
 import { FiletGare } from "@/components/Ornaments";
 import GalerieVoie15 from "@/components/GalerieVoie15";
+import { espaceUtilisateur } from "@/lib/espace";
+
+export const dynamic = "force-dynamic";
 
 const MAPS_URL = "https://maps.app.goo.gl/u6fRgKjAh7WwCScH9";
 
@@ -38,7 +42,11 @@ const ETAPES = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
+  // Déjà connecté ? On reste dans l'espace connecté, jamais sur l'accueil public.
+  const dest = await espaceUtilisateur();
+  if (dest) redirect(dest);
+
   return (
     <main className="min-h-screen">
       {/* En-tête — logo cliquable (retour accueil) */}
