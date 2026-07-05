@@ -5,6 +5,7 @@ import Deconnexion from "@/app/mon-espace/Deconnexion";
 import { JOURS, labelJour, FORMULE_LABEL } from "@/lib/jours";
 import { affiche, normDebut } from "@/lib/creneaux";
 import { GlobeGrid } from "@/components/Ornaments";
+import SolliciterAgent from "./SolliciterAgent";
 
 export const dynamic = "force-dynamic";
 
@@ -129,9 +130,10 @@ export default async function EspaceReceptif() {
           </div>
         )}
 
+        <SolliciterAgent />
+
         <p className="mt-8 rounded-lg border border-dashed border-ligne p-4 font-corps text-sm text-encreDoux">
-          Bientôt : consulter la liste des agences inscrites et leur proposer
-          vous-même un rendez-vous, plus la messagerie.
+          Bientôt : la messagerie pour échanger avec les agents.
         </p>
       </div>
     </div>
