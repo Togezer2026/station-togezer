@@ -18,7 +18,7 @@ node scripts/test-regles.mjs  # vérifie les 10 règles vitales (données ZZ-TES
 | 0001 → 0016 | Schéma, RLS, moteur de réservation, admin | ✅ | 05/07/2026 (sonde) |
 | 0017 | Réceptif réserve un agent | ✅ | 05/07/2026 (sonde) |
 | 0018 | Messagerie agent ↔ réceptif | ✅ | 05/07/2026 (sonde) |
-| 0019 | Durcissement (is_admin definer, revoke anon, taille messages) | ⬜ **À APPLIQUER** | — |
+| 0019 | Durcissement (is_admin definer, revoke anon, taille messages) | ✅ | 05/07/2026 (10/10 tests + verrouillage anon confirmé) |
 
 > Après application d'une migration : relancer les deux scripts ci-dessus,
 > puis mettre à jour ce tableau.
