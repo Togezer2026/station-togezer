@@ -1,5 +1,6 @@
 import { requireAdmin } from "@/lib/admin";
 import { labelJour } from "@/lib/jours";
+import UserActions from "../UserActions";
 
 export const dynamic = "force-dynamic";
 
@@ -57,6 +58,7 @@ export default async function AdminAgents() {
                 <th className="px-4 py-3">Téléphone</th>
                 <th className="px-4 py-3">Jours</th>
                 <th className="px-4 py-3">Inscrit le</th>
+                <th className="px-4 py-3 text-right">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -69,6 +71,9 @@ export default async function AdminAgents() {
                   <td className="px-4 py-3 text-encreDoux">{a.telephone ?? "—"}</td>
                   <td className="px-4 py-3 text-encreDoux">{joursByAgent(a.id).join(", ") || "—"}</td>
                   <td className="px-4 py-3 text-encreDoux">{dateFr(a.created_at)}</td>
+                  <td className="px-4 py-3">
+                    <UserActions userId={a.id} email={a.email} label={a.agence} />
+                  </td>
                 </tr>
               ))}
             </tbody>

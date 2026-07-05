@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { requireAdmin } from "@/lib/admin";
 import EditForm, { type ExposantEdit } from "../EditForm";
 import AccesReceptif from "../AccesReceptif";
+import UserActions from "../../UserActions";
 
 export const dynamic = "force-dynamic";
 
@@ -21,6 +22,17 @@ export default async function EditReceptif({
 
   if (!data) notFound();
 
+  // Compte réceptif lié (pour réinitialisation / suppression)
+  let compte: { id: string; email: string } | null = null;
+  if (data.proprietaire_id) {
+    const { data: p } = await supabase
+      .from("profiles")
+      .select("id, email")
+      .eq("id", data.proprietaire_id)
+      .single();
+    if (p) compte = p as { id: string; email: string };
+  }
+
   return (
     <div>
       <Link href="/admin/receptifs" className="font-corps text-sm text-encreDoux hover:text-encre">
@@ -37,6 +49,15 @@ export default async function EditReceptif({
           hasAccess={!!data.proprietaire_id}
         />
       </div>
+      {compte && (
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-ligne bg-carte p-6 shadow-carte">
+          <div>
+            <p className="font-titre text-lg font-600 text-encre">Gérer le compte réceptif</p>
+            <p className="font-corps text-sm text-encreDoux">Connecté avec : {compte.email}</p>
+          </div>
+          <UserActions userId={compte.id} email={compte.email} label={data.nom} />
+        </div>
+      )}
     </div>
   );
 }
