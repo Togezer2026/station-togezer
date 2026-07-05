@@ -35,6 +35,8 @@ export default function Planning({
   const [entityId, setEntityId] = useState("");
   const [busy, setBusy] = useState(false);
   const [erreur, setErreur] = useState<string | null>(null);
+  const [creating, setCreating] = useState<{ jour: string; hhmm: string } | null>(null);
+  const [autre, setAutre] = useState("");
   const dragRef = useRef<string | null>(null);
 
   // RDV de l'entité sélectionnée (déplaçables : matin/après-midi)
@@ -74,6 +76,33 @@ export default function Planning({
     setBusy(false);
     if (error) {
       setErreur(error.message.includes("occupé") ? "Créneau cible déjà occupé." : "Déplacement impossible.");
+      return;
+    }
+    router.refresh();
+  }
+
+  async function creer() {
+    if (!creating || !autre) return;
+    const agent_id = mode === "agent" ? entityId : autre;
+    const exposant_id = mode === "receptif" ? entityId : autre;
+    setBusy(true);
+    setErreur(null);
+    const { error } = await supabase.rpc("admin_creer_rdv", {
+      p_agent_id: agent_id,
+      p_exposant_id: exposant_id,
+      p_debut: `${creating.jour} ${creating.hhmm}:00`,
+    });
+    setBusy(false);
+    setCreating(null);
+    setAutre("");
+    if (error) {
+      setErreur(
+        error.message.includes("déjà un rendez-vous")
+          ? "Cet agent a déjà un rendez-vous avec ce réceptif."
+          : error.message.includes("occupé")
+            ? "Créneau déjà occupé."
+            : "Création impossible.",
+      );
       return;
     }
     router.refresh();
@@ -130,7 +159,11 @@ export default function Planning({
                           {label(r)}
                         </div>
                       ) : (
-                        <div className="h-7 flex-1 rounded-md border border-dashed border-ligne/70" />
+                        <button
+                          onClick={() => { setCreating({ jour: j.iso, hhmm }); setAutre(""); setErreur(null); }}
+                          title="Créer un rendez-vous ici"
+                          className="h-7 flex-1 rounded-md border border-dashed border-ligne/70 transition hover:border-brique/50 hover:bg-brique/5"
+                        />
                       )}
                     </div>
                   );
@@ -138,6 +171,43 @@ export default function Planning({
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {/* Modal création */}
+      {creating && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-encre/40 p-4"
+          onClick={() => setCreating(null)}>
+          <div className="w-full max-w-md rounded-xl bg-carte p-6 shadow-carte"
+            onClick={(e) => e.stopPropagation()}>
+            <h3 className="font-titre text-xl font-600 text-encre">Créer un rendez-vous</h3>
+            <p className="mt-1 font-corps text-sm text-encreDoux">
+              {labelJour(creating.jour)} à {affiche(creating.hhmm)}
+            </p>
+            <label className="mt-4 block">
+              <span className="mb-1 block font-corps text-xs font-600 uppercase tracking-wide text-encreDoux">
+                {mode === "receptif" ? "Avec quelle agence ?" : "Avec quel réceptif ?"}
+              </span>
+              <select value={autre} onChange={(e) => setAutre(e.target.value)}
+                className="w-full rounded-lg border border-encre/20 bg-white px-3 py-2 font-corps text-sm">
+                <option value="">— Choisir —</option>
+                {(mode === "receptif"
+                  ? agents.map((a) => ({ id: a.id, nom: a.agence }))
+                  : receptifs
+                ).map((o) => <option key={o.id} value={o.id}>{o.nom}</option>)}
+              </select>
+            </label>
+            <div className="mt-5 flex justify-end gap-3">
+              <button onClick={() => setCreating(null)}
+                className="rounded-full border border-encre/20 px-5 py-2 font-corps text-sm text-encre">
+                Annuler
+              </button>
+              <button onClick={creer} disabled={!autre || busy}
+                className="rounded-full bg-brique px-5 py-2 font-corps font-600 text-creme disabled:opacity-50">
+                Créer le RDV
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>
