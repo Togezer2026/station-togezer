@@ -19,7 +19,7 @@ node scripts/test-regles.mjs  # vérifie les 10 règles vitales (données ZZ-TES
 | 0017 | Réceptif réserve un agent | ✅ | 05/07/2026 (sonde) |
 | 0018 | Messagerie agent ↔ réceptif | ✅ | 05/07/2026 (sonde) |
 | 0019 | Durcissement (is_admin definer, revoke anon, taille messages) | ✅ | 05/07/2026 (10/10 tests + verrouillage anon confirmé) |
-| 0020 | Déjeuner réseautage agent (demander/annuler/mes_dejeuners) | ⬜ **À APPLIQUER** | — |
+| 0020 | Déjeuner réseautage agent (demander/annuler/mes_dejeuners) | ✅ | 06/07/2026 (5/5 déjeuner + 10/10 règles) |
 
 > Après application d'une migration : relancer les deux scripts ci-dessus,
 > puis mettre à jour ce tableau.
